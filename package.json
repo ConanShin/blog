@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "postbuild": "rm -rf docs && mv dist docs"
+    "postbuild": "rm -rf docs && mv _markdowns docs",
+    "deploy": "markdown-folder-to-html markdowns && npm run postbuild"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -24,6 +25,7 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "markdown-folder-to-html": "^2.4.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
