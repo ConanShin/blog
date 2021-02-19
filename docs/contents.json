@@ -2,16 +2,27 @@
   "paths": [
     {
       "type": "file",
+      "value": "index.md"
+    },
+    {
+      "type": "file",
       "value": "flutter_chapter1.md"
     }
   ],
   "contents": [
     {
+      "path": "index.md",
+      "url": "index.html",
+      "content": "Hello This is Conan's Page",
+      "html": "<p>Hello This is Conan’s Page</p>\n",
+      "id": 0
+    },
+    {
       "path": "flutter_chapter1.md",
       "url": "flutter_chapter1.html",
       "content": "Chapter 1. Flutter 시작하기\n===\n###### tags: `Flutter` `Android Studio`\n\n1. Android Studio 셋팅\n    - 다운로드 https://developer.android.com/studio?hl=ko\n    - 플러그인 설치\n      ![](https://i.imgur.com/RBXLh3O.jpg)\n    - flutter & dart 설치\n      ![](https://i.imgur.com/cNVG2L6.png)\n\n2. 프로젝트 생성\n    - Flutter 프로젝트 만들기\n      ![](https://i.imgur.com/IgFDXMQ.png)\n    - 프로젝트 종류 -> Application 선택\n      ![](https://i.imgur.com/EEsYN1G.png)\n      a. Application: 어플리케이션 개발\n      b. Plugin: Native API를 사용\n      c. Package: Flutter App에 적용될 컴포넌트 개발\n      d. Module: Native App에 적용될 컴포넌트 개발\n    - 프로젝트 셋팅 & SDK 설치\n      ![](https://i.imgur.com/eo5T9It.png)\n\n3. Simulator 셋팅\n    - iOS simulator 실행\n      ![](https://i.imgur.com/vK85Ojw.png)\n    - 빠릿 빠릿한 iphone 12 max\n      ![](https://i.imgur.com/56dqoww.jpg)\n    - 코드 빌드 및 실행\n      ![](https://i.imgur.com/al6lAuY.png)\n      실행한 iphone이 안보이면\n     `sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer`",
       "html": "<h1 id=\"chapter-1.-flutter-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0\">Chapter 1. Flutter 시작하기 <a class=\"heading-anchor-permalink\" href=\"#chapter-1.-flutter-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0\">#</a></h1>\n<h6 id=\"tags%3A-flutter-android-studio\">tags: <code>Flutter</code> <code>Android Studio</code> <a class=\"heading-anchor-permalink\" href=\"#tags%3A-flutter-android-studio\">#</a></h6>\n<ol>\n<li>\n<p>Android Studio 셋팅</p>\n<ul>\n<li>다운로드 <a href=\"https://developer.android.com/studio?hl=ko\">https://developer.android.com/studio?hl=ko</a></li>\n<li>플러그인 설치\n<img src=\"https://i.imgur.com/RBXLh3O.jpg\" alt=\"\"></li>\n<li>flutter &amp; dart 설치\n<img src=\"https://i.imgur.com/cNVG2L6.png\" alt=\"\"></li>\n</ul>\n</li>\n<li>\n<p>프로젝트 생성</p>\n<ul>\n<li>Flutter 프로젝트 만들기\n<img src=\"https://i.imgur.com/IgFDXMQ.png\" alt=\"\"></li>\n<li>프로젝트 종류 -&gt; Application 선택\n<img src=\"https://i.imgur.com/EEsYN1G.png\" alt=\"\">\na. Application: 어플리케이션 개발\nb. Plugin: Native API를 사용\nc. Package: Flutter App에 적용될 컴포넌트 개발\nd. Module: Native App에 적용될 컴포넌트 개발</li>\n<li>프로젝트 셋팅 &amp; SDK 설치\n<img src=\"https://i.imgur.com/eo5T9It.png\" alt=\"\"></li>\n</ul>\n</li>\n<li>\n<p>Simulator 셋팅</p>\n<ul>\n<li>iOS simulator 실행\n<img src=\"https://i.imgur.com/vK85Ojw.png\" alt=\"\"></li>\n<li>빠릿 빠릿한 iphone 12 max\n<img src=\"https://i.imgur.com/56dqoww.jpg\" alt=\"\"></li>\n<li>코드 빌드 및 실행\n<img src=\"https://i.imgur.com/al6lAuY.png\" alt=\"\">\n실행한 iphone이 안보이면\n<code>sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</code></li>\n</ul>\n</li>\n</ol>\n",
-      "id": 0
+      "id": 1
     }
   ]
 }
