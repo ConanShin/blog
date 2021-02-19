@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "postbuild": "mv dist docs"
+    "postbuild": "rm -rf docs && mv dist docs"
   },
   "dependencies": {
     "core-js": "^3.6.5",
