@@ -6,6 +6,16 @@
     },
     {
       "type": "dir",
+      "name": "Machine Learning",
+      "children": [
+        {
+          "type": "file",
+          "value": "Machine Learning/Convolution.md"
+        }
+      ]
+    },
+    {
+      "type": "dir",
       "name": "flutter",
       "children": [
         {
@@ -15,6 +25,10 @@
         {
           "type": "file",
           "value": "flutter/chapter2.md"
+        },
+        {
+          "type": "file",
+          "value": "flutter/chapter3.md"
         }
       ]
     }
@@ -28,18 +42,32 @@
       "id": 0
     },
     {
+      "path": "Machine Learning/Convolution.md",
+      "url": "Machine Learning/Convolution.html",
+      "content": "2021-01-22\n===\n###### tags: `Convolution` `Dialation`\n\n#### dropout\n과적합 방지를 위한 정규화 방법, rate 파라미터의 비율만큼 dropout이 적용된다.\n\n#### convolution(합성곱 연산)\n![](https://i.imgur.com/Yf0pUmr.png =x150)\n\n#### dialation_rate\n![](https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819 =x170)\n- 주변 픽셀의 Contextual Information을 고려하기 위함\n- kernel size(receptive field)를 늘려서 주변 픽셀을 고려하기 되면 연산 복잡도가 증가됨\n- 0 padding을 통해 연산 복잡도는 줄이고 주변을 고려할 수 있는 convolution layer를 생성\n\n#### strides\n필터가 적용되는 위치의 간격\n\n#### receptive field\nkernel_size = output을 만들어내는 영역\n\ndownsampling/upsampling: 데이터의 차원을 변경시켜 이미지를 압축하거나 늘리는 방식\n\npooling/unpooling\n- pooling: 가로 세로 방향의 공간을 줄이는 연산, 에를 들어 최대 풀링 2X2의 경우 2X2 사이즈 내에서 최값을 뽑아낸다. \n- unpooling: 풀링의 반대, 같은 값으로 채우거나 0으로 채우는 등 여러 방법이 있다.\n \ndata format:\n- batch: 몇장의 사진을 이번 트레이닝에 input으로 사용할 것인가\n- channel: 사진은 RGB로 3개의 채널을 가짐 (데이터의 속성 갯수)\n\npadding='same' : input size와 같도록 맞춰준다 \n\nconv1D\n- :exclamation:우리가 헷갈렸던 부분 : 1D짜리 convolution을 적용한다고 생각했는데 (filter size가 1 * n 이라 생각했는데)\n- 실제 : convolution 방향이 1D였던 것(가로 방향으로만 convolution하도록 filter size가 자동으로 정해짐) \n\n```python=\ninputs = tf.keras.Input(shape = (1, 28, 28)) # (1)\ndropout = tf.keras.layers.Dropout(rate=0.2)(inputs)\nconv = tf.keras.layers.Conv1D(10, 3, padding='same', activation=tf.nn.relu)(inputs) # (2)\n```\n1. input size는 28*28\n2. input이 1D convolution을 통과하여 (28-2)*1 이 되고,  padding='same' 옵션을 주었으니 input size와 같아지도록 padding을 추가하여 28*1이 됨. 채널 10이므로 28 * 1 * 10\n\n",
+      "html": "<h1 id=\"2021-01-22\">2021-01-22 <a class=\"heading-anchor-permalink\" href=\"#2021-01-22\">#</a></h1>\n<h6 id=\"tags%3A-convolution-dialation\">tags: <code>Convolution</code> <code>Dialation</code> <a class=\"heading-anchor-permalink\" href=\"#tags%3A-convolution-dialation\">#</a></h6>\n<h4 id=\"dropout\">dropout <a class=\"heading-anchor-permalink\" href=\"#dropout\">#</a></h4>\n<p>과적합 방지를 위한 정규화 방법, rate 파라미터의 비율만큼 dropout이 적용된다.</p>\n<h4 id=\"convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)\">convolution(합성곱 연산) <a class=\"heading-anchor-permalink\" href=\"#convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)\">#</a></h4>\n<p>![](<a href=\"https://i.imgur.com/Yf0pUmr.png\">https://i.imgur.com/Yf0pUmr.png</a> =x150)</p>\n<h4 id=\"dialation_rate\">dialation_rate <a class=\"heading-anchor-permalink\" href=\"#dialation_rate\">#</a></h4>\n<p>![](<a href=\"https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819\">https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819</a> =x170)</p>\n<ul>\n<li>주변 픽셀의 Contextual Information을 고려하기 위함</li>\n<li>kernel size(receptive field)를 늘려서 주변 픽셀을 고려하기 되면 연산 복잡도가 증가됨</li>\n<li>0 padding을 통해 연산 복잡도는 줄이고 주변을 고려할 수 있는 convolution layer를 생성</li>\n</ul>\n<h4 id=\"strides\">strides <a class=\"heading-anchor-permalink\" href=\"#strides\">#</a></h4>\n<p>필터가 적용되는 위치의 간격</p>\n<h4 id=\"receptive-field\">receptive field <a class=\"heading-anchor-permalink\" href=\"#receptive-field\">#</a></h4>\n<p>kernel_size = output을 만들어내는 영역</p>\n<p>downsampling/upsampling: 데이터의 차원을 변경시켜 이미지를 압축하거나 늘리는 방식</p>\n<p>pooling/unpooling</p>\n<ul>\n<li>pooling: 가로 세로 방향의 공간을 줄이는 연산, 에를 들어 최대 풀링 2X2의 경우 2X2 사이즈 내에서 최값을 뽑아낸다.</li>\n<li>unpooling: 풀링의 반대, 같은 값으로 채우거나 0으로 채우는 등 여러 방법이 있다.</li>\n</ul>\n<p>data format:</p>\n<ul>\n<li>batch: 몇장의 사진을 이번 트레이닝에 input으로 사용할 것인가</li>\n<li>channel: 사진은 RGB로 3개의 채널을 가짐 (데이터의 속성 갯수)</li>\n</ul>\n<p>padding=‘same’ : input size와 같도록 맞춰준다</p>\n<p>conv1D</p>\n<ul>\n<li>:exclamation:우리가 헷갈렸던 부분 : 1D짜리 convolution을 적용한다고 생각했는데 (filter size가 1 * n 이라 생각했는데)</li>\n<li>실제 : convolution 방향이 1D였던 것(가로 방향으로만 convolution하도록 filter size가 자동으로 정해짐)</li>\n</ul>\n<pre><code class=\"language-python=\">inputs = tf.keras.Input(shape = (1, 28, 28)) # (1)\ndropout = tf.keras.layers.Dropout(rate=0.2)(inputs)\nconv = tf.keras.layers.Conv1D(10, 3, padding='same', activation=tf.nn.relu)(inputs) # (2)\n</code></pre>\n<ol>\n<li>input size는 28*28</li>\n<li>input이 1D convolution을 통과하여 (28-2)<em>1 이 되고,  padding=‘same’ 옵션을 주었으니 input size와 같아지도록 padding을 추가하여 28</em>1이 됨. 채널 10이므로 28 * 1 * 10</li>\n</ol>\n",
+      "id": 1
+    },
+    {
       "path": "flutter/chapter1.md",
       "url": "flutter/chapter1.html",
       "content": "Chapter 1. Flutter 시작하기\n===\n###### tags: `Flutter` `Android Studio`\n\n1. Android Studio 셋팅\n    - 다운로드 https://developer.android.com/studio?hl=ko\n    - 플러그인 설치\n      ![](https://i.imgur.com/RBXLh3O.jpg)\n    - flutter & dart 설치\n      ![](https://i.imgur.com/cNVG2L6.png)\n\n2. 프로젝트 생성\n    - Flutter 프로젝트 만들기\n      ![](https://i.imgur.com/IgFDXMQ.png)\n    - 프로젝트 종류 -> Application 선택\n      ![](https://i.imgur.com/EEsYN1G.png)\n      a. Application: 어플리케이션 개발\n      b. Plugin: Native API를 사용\n      c. Package: Flutter App에 적용될 컴포넌트 개발\n      d. Module: Native App에 적용될 컴포넌트 개발\n    - 프로젝트 셋팅 & SDK 설치\n      ![](https://i.imgur.com/eo5T9It.png)\n\n3. Simulator 셋팅\n    - iOS simulator 실행\n      ![](https://i.imgur.com/vK85Ojw.png)\n    - 빠릿 빠릿한 iphone 12 max\n      ![](https://i.imgur.com/56dqoww.jpg)\n    - 코드 빌드 및 실행\n      ![](https://i.imgur.com/al6lAuY.png)\n      실행한 iphone이 안보이면\n     `sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer`",
       "html": "<h1 id=\"chapter-1.-flutter-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0\">Chapter 1. Flutter 시작하기 <a class=\"heading-anchor-permalink\" href=\"#chapter-1.-flutter-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0\">#</a></h1>\n<h6 id=\"tags%3A-flutter-android-studio\">tags: <code>Flutter</code> <code>Android Studio</code> <a class=\"heading-anchor-permalink\" href=\"#tags%3A-flutter-android-studio\">#</a></h6>\n<ol>\n<li>\n<p>Android Studio 셋팅</p>\n<ul>\n<li>다운로드 <a href=\"https://developer.android.com/studio?hl=ko\">https://developer.android.com/studio?hl=ko</a></li>\n<li>플러그인 설치\n<img src=\"https://i.imgur.com/RBXLh3O.jpg\" alt=\"\"></li>\n<li>flutter &amp; dart 설치\n<img src=\"https://i.imgur.com/cNVG2L6.png\" alt=\"\"></li>\n</ul>\n</li>\n<li>\n<p>프로젝트 생성</p>\n<ul>\n<li>Flutter 프로젝트 만들기\n<img src=\"https://i.imgur.com/IgFDXMQ.png\" alt=\"\"></li>\n<li>프로젝트 종류 -&gt; Application 선택\n<img src=\"https://i.imgur.com/EEsYN1G.png\" alt=\"\">\na. Application: 어플리케이션 개발\nb. Plugin: Native API를 사용\nc. Package: Flutter App에 적용될 컴포넌트 개발\nd. Module: Native App에 적용될 컴포넌트 개발</li>\n<li>프로젝트 셋팅 &amp; SDK 설치\n<img src=\"https://i.imgur.com/eo5T9It.png\" alt=\"\"></li>\n</ul>\n</li>\n<li>\n<p>Simulator 셋팅</p>\n<ul>\n<li>iOS simulator 실행\n<img src=\"https://i.imgur.com/vK85Ojw.png\" alt=\"\"></li>\n<li>빠릿 빠릿한 iphone 12 max\n<img src=\"https://i.imgur.com/56dqoww.jpg\" alt=\"\"></li>\n<li>코드 빌드 및 실행\n<img src=\"https://i.imgur.com/al6lAuY.png\" alt=\"\">\n실행한 iphone이 안보이면\n<code>sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</code></li>\n</ul>\n</li>\n</ol>\n",
-      "id": 1
+      "id": 2
     },
     {
       "path": "flutter/chapter2.md",
       "url": "flutter/chapter2.html",
       "content": "Chapter 2. Widget 개념\n===\n###### tags: `Flutter` `Stateless Widget` `Stateful Widget`\n\n1. Stateless와 Stateful widget의 공통점\n    - Build 함수가 실행될때 화면에 UI component가 Rendering 됨\n    - ",
       "html": "<h1 id=\"chapter-2.-widget-%EA%B0%9C%EB%85%90\">Chapter 2. Widget 개념 <a class=\"heading-anchor-permalink\" href=\"#chapter-2.-widget-%EA%B0%9C%EB%85%90\">#</a></h1>\n<h6 id=\"tags%3A-flutter-stateless-widget-stateful-widget\">tags: <code>Flutter</code> <code>Stateless Widget</code> <code>Stateful Widget</code> <a class=\"heading-anchor-permalink\" href=\"#tags%3A-flutter-stateless-widget-stateful-widget\">#</a></h6>\n<ol>\n<li>Stateless와 Stateful widget의 공통점\n<ul>\n<li>Build 함수가 실행될때 화면에 UI component가 Rendering 됨</li>\n<li></li>\n</ul>\n</li>\n</ol>\n",
-      "id": 2
+      "id": 3
+    },
+    {
+      "path": "flutter/chapter3.md",
+      "url": "flutter/chapter3.html",
+      "content": "Chapter3. 이미지 추가하기\n===\n\n###### tags: `Flutter`\n\n- image파일이 담길 폴더 생성\n    ![](https://i.imgur.com/tzxdNV8.png)\n- pubspec.yaml파일에 assets 설정\n    ![](https://i.imgur.com/xmnVqms.png)\n\n",
+      "html": "<h1 id=\"chapter3.-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0\">Chapter3. 이미지 추가하기 <a class=\"heading-anchor-permalink\" href=\"#chapter3.-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0\">#</a></h1>\n<h6 id=\"tags%3A-flutter\">tags: <code>Flutter</code> <a class=\"heading-anchor-permalink\" href=\"#tags%3A-flutter\">#</a></h6>\n<ul>\n<li>image파일이 담길 폴더 생성\n<img src=\"https://i.imgur.com/tzxdNV8.png\" alt=\"\"></li>\n<li>pubspec.yaml파일에 assets 설정\n<img src=\"https://i.imgur.com/xmnVqms.png\" alt=\"\"></li>\n</ul>\n",
+      "id": 4
     }
   ]
 }

@@ -477,21 +477,62 @@
       </a>
       <nav id="menu">
         <ul>
-<li><a class="active" href="index.html">index</a></li>
+<li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="Machine Learning/Convolution.html">Convolution</a></li>
+<li><a class="active" href="Convolution.html">Convolution</a></li>
 </ul>
 <li class="heading"><span>flutter</span></li>
 <ul>
-<li><a class="" href="flutter/chapter1.html">chapter1</a></li>
-<li><a class="" href="flutter/chapter2.html">chapter2</a></li>
-<li><a class="" href="flutter/chapter3.html">chapter3</a></li>
+<li><a class="" href="../flutter/chapter1.html">chapter1</a></li>
+<li><a class="" href="../flutter/chapter2.html">chapter2</a></li>
+<li><a class="" href="../flutter/chapter3.html">chapter3</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <p>Hello This is Conan’s Page</p>
+        <h1 id="2021-01-22">2021-01-22 <a class="heading-anchor-permalink" href="#2021-01-22">#</a></h1>
+<h6 id="tags%3A-convolution-dialation">tags: <code>Convolution</code> <code>Dialation</code> <a class="heading-anchor-permalink" href="#tags%3A-convolution-dialation">#</a></h6>
+<h4 id="dropout">dropout <a class="heading-anchor-permalink" href="#dropout">#</a></h4>
+<p>과적합 방지를 위한 정규화 방법, rate 파라미터의 비율만큼 dropout이 적용된다.</p>
+<h4 id="convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)">convolution(합성곱 연산) <a class="heading-anchor-permalink" href="#convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)">#</a></h4>
+<p>![](<a href="https://i.imgur.com/Yf0pUmr.png">https://i.imgur.com/Yf0pUmr.png</a> =x150)</p>
+<h4 id="dialation_rate">dialation_rate <a class="heading-anchor-permalink" href="#dialation_rate">#</a></h4>
+<p>![](<a href="https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819">https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819</a> =x170)</p>
+<ul>
+<li>주변 픽셀의 Contextual Information을 고려하기 위함</li>
+<li>kernel size(receptive field)를 늘려서 주변 픽셀을 고려하기 되면 연산 복잡도가 증가됨</li>
+<li>0 padding을 통해 연산 복잡도는 줄이고 주변을 고려할 수 있는 convolution layer를 생성</li>
+</ul>
+<h4 id="strides">strides <a class="heading-anchor-permalink" href="#strides">#</a></h4>
+<p>필터가 적용되는 위치의 간격</p>
+<h4 id="receptive-field">receptive field <a class="heading-anchor-permalink" href="#receptive-field">#</a></h4>
+<p>kernel_size = output을 만들어내는 영역</p>
+<p>downsampling/upsampling: 데이터의 차원을 변경시켜 이미지를 압축하거나 늘리는 방식</p>
+<p>pooling/unpooling</p>
+<ul>
+<li>pooling: 가로 세로 방향의 공간을 줄이는 연산, 에를 들어 최대 풀링 2X2의 경우 2X2 사이즈 내에서 최값을 뽑아낸다.</li>
+<li>unpooling: 풀링의 반대, 같은 값으로 채우거나 0으로 채우는 등 여러 방법이 있다.</li>
+</ul>
+<p>data format:</p>
+<ul>
+<li>batch: 몇장의 사진을 이번 트레이닝에 input으로 사용할 것인가</li>
+<li>channel: 사진은 RGB로 3개의 채널을 가짐 (데이터의 속성 갯수)</li>
+</ul>
+<p>padding=‘same’ : input size와 같도록 맞춰준다</p>
+<p>conv1D</p>
+<ul>
+<li>:exclamation:우리가 헷갈렸던 부분 : 1D짜리 convolution을 적용한다고 생각했는데 (filter size가 1 * n 이라 생각했는데)</li>
+<li>실제 : convolution 방향이 1D였던 것(가로 방향으로만 convolution하도록 filter size가 자동으로 정해짐)</li>
+</ul>
+<pre><code class="language-python=">inputs = tf.keras.Input(shape = (1, 28, 28)) # (1)
+dropout = tf.keras.layers.Dropout(rate=0.2)(inputs)
+conv = tf.keras.layers.Conv1D(10, 3, padding='same', activation=tf.nn.relu)(inputs) # (2)
+</code></pre>
+<ol>
+<li>input size는 28*28</li>
+<li>input이 1D convolution을 통과하여 (28-2)<em>1 이 되고,  padding=‘same’ 옵션을 주었으니 input size와 같아지도록 padding을 추가하여 28</em>1이 됨. 채널 10이므로 28 * 1 * 10</li>
+</ol>
 
       </article>
     </div>
