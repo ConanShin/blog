@@ -480,39 +480,75 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="../Machine Learning/Convolution.html">Convolution</a></li>
-<li><a class="" href="../Machine Learning/Embedding.html">Embedding</a></li>
+<li><a class="" href="Convolution.html">Convolution</a></li>
+<li><a class="active" href="Embedding.html">Embedding</a></li>
 </ul>
 <li class="heading"><span>flutter</span></li>
 <ul>
-<li><a class="" href="chapter1.html">chapter1</a></li>
-<li><a class="active" href="chapter2.html">chapter2</a></li>
-<li><a class="" href="chapter3.html">chapter3</a></li>
+<li><a class="" href="../flutter/chapter1.html">chapter1</a></li>
+<li><a class="" href="../flutter/chapter2.html">chapter2</a></li>
+<li><a class="" href="../flutter/chapter3.html">chapter3</a></li>
 </ul>
 </ul>
       </nav>
       <article id="main" class="content">
-        <h1 id="chapter-2.-widget-%EA%B0%9C%EB%85%90">Chapter 2. Widget 개념 <a class="heading-anchor-permalink" href="#chapter-2.-widget-%EA%B0%9C%EB%85%90">#</a></h1>
-<h6 id="tags%3A-flutter-stateless-widget-stateful-widget">tags: <code>Flutter</code> <code>Stateless Widget</code> <code>Stateful Widget</code> <a class="heading-anchor-permalink" href="#tags%3A-flutter-stateless-widget-stateful-widget">#</a></h6>
-<ul>
-<li>Build 함수가 실행될때 화면에 UI component가 Rendering 됨</li>
-<li>MaterialApp과 Scaffold를 활용하여 구조를 잡음
-<ul>
-<li>MaterialApp: <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html">https://api.flutter.dev/flutter/material/MaterialApp-class.html</a></li>
-<li>Scaffold: <a href="https://api.flutter.dev/flutter/material/Scaffold-class.html">https://api.flutter.dev/flutter/material/Scaffold-class.html</a></li>
-</ul>
-</li>
-<li>Stateful Widget:
-<ul>
-<li>setState함수를 이용하여 stateful 컴포넌트에 존재하는 state 변수를 수정하고 rerender 진행</li>
-</ul>
-</li>
-<li>Stateless Widget:
-<ul>
-<li>순수 UI 목적을 가진 컴포넌트로 변동하는 state를 내포할 수 없음</li>
-</ul>
-</li>
-</ul>
+        <h1 id="2021-01-28">2021-01-28 <a class="heading-anchor-permalink" href="#2021-01-28">#</a></h1>
+<h6 id="tags%3A-embedding">tags: <code>Embedding</code> <a class="heading-anchor-permalink" href="#tags%3A-embedding">#</a></h6>
+<h3 id="word-embedding-layer%EB%A5%BC-%ED%95%99%EC%8A%B5%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95">Word Embedding Layer를 학습시키는 방법 <a class="heading-anchor-permalink" href="#word-embedding-layer%EB%A5%BC-%ED%95%99%EC%8A%B5%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95">#</a></h3>
+<ol>
+<li>CBow: 주변의 단어(window size)로 하나의 단어를 추측하는 기법</li>
+<li>Skip-gram: 하나의 단어로 주변 단어들을 추측하는 기법</li>
+</ol>
+<pre><code>입력층 [1 * 단어 벡터 길이] * 가중치 [단어 벡터 길이 * 은닉층 길이] = 은닉층 [1 * 은닉층 길이]
+은닉층 [1 * 은닉층 길이] * 가중치 [은닉층 길이 * 단어 벡터 길이] = 출력층 [1 * 단어 벡터 길이]
+</code></pre>
+<h3 id="skip-gram-sample">Skip-gram sample <a class="heading-anchor-permalink" href="#skip-gram-sample">#</a></h3>
+<pre><code class="language-python=">import sys
+sys.path.append('..')
+import numpy as np
+from common.layers import MatMul, SoftmaxWithLoss
+
+
+class SimpleSkipGram:
+    def __init__(self, vocab_size, hidden_size):
+        V, H = vocab_size, hidden_size
+
+        # 가중치 초기화
+        W_in = 0.01 * np.random.randn(V, H).astype('f')
+        W_out = 0.01 * np.random.randn(H, V).astype('f')
+
+        # 계층 생성
+        self.in_layer = MatMul(W_in)
+        self.out_layer = MatMul(W_out)
+        self.loss_layer1 = SoftmaxWithLoss()
+        self.loss_layer2 = SoftmaxWithLoss()
+
+        # 모든 가중치와 기울기를 리스트에 모은다.
+        layers = [self.in_layer, self.out_layer]
+        self.params, self.grads = [], []
+        for layer in layers:
+            self.params += layer.params
+            self.grads += layer.grads
+
+        # 인스턴스 변수에 단어의 분산 표현을 저장한다.
+        self.word_vecs = W_in
+
+    def forward(self, contexts, target):
+        h = self.in_layer.forward(target)
+        s = self.out_layer.forward(h)
+        l1 = self.loss_layer1.forward(s, contexts[:, 0])
+        l2 = self.loss_layer2.forward(s, contexts[:, 1])
+        loss = l1 + l2
+        return loss
+
+    def backward(self, dout=1):
+        dl1 = self.loss_layer1.backward(dout)
+        dl2 = self.loss_layer2.backward(dout)
+        ds = dl1 + dl2
+        dh = self.out_layer.backward(ds)
+        self.in_layer.backward(dh)
+        return None
+</code></pre>
 
       </article>
     </div>
