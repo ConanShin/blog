@@ -6,10 +6,10 @@
 과적합 방지를 위한 정규화 방법, rate 파라미터의 비율만큼 dropout이 적용된다.
 
 #### convolution(합성곱 연산)
-![](https://i.imgur.com/Yf0pUmr.png =x150)
+![](https://i.imgur.com/Yf0pUmr.png)
 
 #### dialation_rate
-![](https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819 =x170)
+![](https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819)
 - 주변 픽셀의 Contextual Information을 고려하기 위함
 - kernel size(receptive field)를 늘려서 주변 픽셀을 고려하기 되면 연산 복잡도가 증가됨
 - 0 padding을 통해 연산 복잡도는 줄이고 주변을 고려할 수 있는 convolution layer를 생성
