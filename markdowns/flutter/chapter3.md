@@ -15,4 +15,4 @@ Chapter3. Asset 추가하기
 
     ![](https://i.imgur.com/QZXGHLb.png)
     
-    !혹시 이래도 이미지를 찾을 수 없다고 나오면 앱을 다시 실행해 본다
+:exclamation:혹시 이래도 이미지를 찾을 수 없다고 나오면 앱을 다시 실행해 본다
