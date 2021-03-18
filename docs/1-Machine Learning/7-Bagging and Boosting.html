@@ -479,14 +479,14 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="Bagging and Boosting.html">Bagging and Boosting</a></li>
-<li><a class="" href="Categorizer.html">Categorizer</a></li>
-<li><a class="" href="Chatbot.html">Chatbot</a></li>
-<li><a class="" href="Convolution.html">Convolution</a></li>
-<li><a class="" href="Embedding.html">Embedding</a></li>
-<li><a class="" href="LSTM RNN CNN.html">LSTM RNN CNN</a></li>
-<li><a class="active" href="Preprocessing.html">Preprocessing</a></li>
-<li><a class="" href="Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="1-Convolution.html">Convolution</a></li>
+<li><a class="" href="2-Embedding.html">Embedding</a></li>
+<li><a class="" href="3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="active" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="8-Chatbot.html">Chatbot</a></li>
 </ul>
 <li class="heading"><span>WebRTC</span></li>
 <ul>
@@ -505,9 +505,9 @@
 </ul>
 <li class="heading"><span>Flutter</span></li>
 <ul>
-<li><a class="" href="../5-Flutter/1.Setup.html">1.Setup</a></li>
-<li><a class="" href="../5-Flutter/2.Widget.html">2.Widget</a></li>
-<li><a class="" href="../5-Flutter/3.Assets.html">3.Assets</a></li>
+<li><a class="" href="../5-Flutter/1-Setup.html">Setup</a></li>
+<li><a class="" href="../5-Flutter/2-Widget.html">Widget</a></li>
+<li><a class="" href="../5-Flutter/3-Assets.html">Assets</a></li>
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
@@ -516,94 +516,80 @@
 </ul>
     </nav>
     <article id="main" class="content">
-        <h1 id="2021-02-04">2021-02-04 <a class="heading-anchor-permalink" href="#2021-02-04">#</a></h1>
-<h6 id="tags%3A-%EC%A0%84%EC%B2%98%EB%A6%AC-preprocessing">tags: <code>전처리</code> <code>preprocessing</code> <a class="heading-anchor-permalink" href="#tags%3A-%EC%A0%84%EC%B2%98%EB%A6%AC-preprocessing">#</a></h6>
-<h4 id="1.-%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0">1. 불용어 제거 <a class="heading-anchor-permalink" href="#1.-%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0">#</a></h4>
-<pre><code class="language-python">def preprocessing( review, remove_stopwords = False ): 
-    # 불용어 제거는 옵션으로 선택 가능하다.
-    
-    # 1. HTML 태그 제거
-    review_text = BeautifulSoup(review, &quot;html5lib&quot;).get_text()	
-
-    # 2. 영어가 아닌 특수문자들을 공백(&quot; &quot;)으로 바꾸기
-    review_text = re.sub(&quot;[^a-zA-Z]&quot;, &quot; &quot;, review_text)
-
-    # 3. 대문자들을 소문자로 바꾸고 공백단위로 텍스트들 나눠서 리스트로 만든다.
-    words = review_text.lower().split()
-
-    if remove_stopwords: 
-        # 4. 불용어들을 제거
-    
-        #영어에 관련된 불용어 불러오기
-        stops = set(stopwords.words(&quot;english&quot;))
-        # 불용어가 아닌 단어들로 이루어진 새로운 리스트 생성
-        words = [w for w in words if not w in stops]
-        # 5. 단어 리스트를 공백을 넣어서 하나의 글로 합친다.	
-        clean_review = ' '.join(words)
-
-    else: # 불용어 제거하지 않을 때
-        clean_review = ' '.join(words)
-
-    return clean_review
-</code></pre>
-<h4 id="2.-%EB%8B%A8%EC%96%B4%EB%A5%BC-%EB%8B%A8%EC%96%B4%EC%82%AC%EC%A0%84%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A1%9C-%EB%B2%A1%ED%84%B0%ED%99%94">2. 단어를 단어사전을 사용해서 인덱스로 벡터화 <a class="heading-anchor-permalink" href="#2.-%EB%8B%A8%EC%96%B4%EB%A5%BC-%EB%8B%A8%EC%96%B4%EC%82%AC%EC%A0%84%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A1%9C-%EB%B2%A1%ED%84%B0%ED%99%94">#</a></h4>
-<pre><code class="language-python">tokenizer = Tokenizer()
-tokenizer.fit_on_texts(clean_train_reviews)
-text_sequences = tokenizer.texts_to_sequences(clean_train_reviews)
-</code></pre>
-<h4 id="3.-%EB%AC%B8%EC%9E%A5-%EA%B8%B8%EC%9D%B4-%EB%8F%99%EA%B8%B0%ED%99%94">3. 문장 길이 동기화 <a class="heading-anchor-permalink" href="#3.-%EB%AC%B8%EC%9E%A5-%EA%B8%B8%EC%9D%B4-%EB%8F%99%EA%B8%B0%ED%99%94">#</a></h4>
-<pre><code class="language-python">word_vocab = tokenizer.word_index
-word_vocab[&quot;&lt;PAD&gt;&quot;] = 0
-
-data_configs = {}
-data_configs['vocab'] = word_vocab
-data_configs['vocab_size'] = len(word_vocab)
-
-MAX_SEQUENCE_LENGTH = 174 
-train_inputs = pad_sequences(text_sequences, maxlen=MAX_SEQUENCE_LENGTH, padding='post')
+        <h1 id="2021-03-02">2021-03-02 <a class="heading-anchor-permalink" href="#2021-03-02">#</a></h1>
+<h6 id="tags%3A-%EC%9C%A0%EC%82%AC%EB%8F%84-xg-boost-bagging">tags: <code>유사도</code> <code>XG Boost</code> <code>Bagging</code> <a class="heading-anchor-permalink" href="#tags%3A-%EC%9C%A0%EC%82%AC%EB%8F%84-xg-boost-bagging">#</a></h6>
+<ul>
+<li>
+<p>중복 문항 체크</p>
+<ul>
+<li>pd Series의 value_counts 함수</li>
+</ul>
+<pre><code class="language-python=">temp_array = pd.Series([1, 1, 1, 2, 3, 4, 5])
+temp_array.value_counts()
 </code></pre>
 <ul>
-<li>Median 산출</li>
-<li>중간값에 맞추어 문장 길이 변환</li>
-<li>긴 문장은 후반부 생략</li>
-<li>짧은 문장은 패딩으로 채우기</li>
+<li>result</li>
 </ul>
-<h4 id="4.-%EC%A0%84%EC%B2%98%EB%A6%AC-%ED%9B%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5">4. 전처리 후 데이터 저장 <a class="heading-anchor-permalink" href="#4.-%EC%A0%84%EC%B2%98%EB%A6%AC-%ED%9B%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5">#</a></h4>
-<h4 id="%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0%ED%95%B4%EC%84%9C-%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8-%EC%B0%8D%EC%96%B4%EB%B3%B4%EA%B8%B0">불용어 제거해서 히스토그램 찍어보기 <a class="heading-anchor-permalink" href="#%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0%ED%95%B4%EC%84%9C-%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8-%EC%B0%8D%EC%96%B4%EB%B3%B4%EA%B8%B0">#</a></h4>
-<pre><code class="language-python">word_size = [len(r.split()) for r in clean_train_reviews]
-np.median(word_size)
+<pre><code>1    3
+5    1
+4    1
+3    1
+2    1
+</code></pre>
+</li>
+<li>
+<p>Preprocessing</p>
+<ul>
+<li>Box plot으로 데이터의 분포를 확인</li>
+<li>Bar chart로 라벨 별 데이터 개수가 균등한지 확인
+<ul>
+<li>라벨 별 데이터 균등하게 맞추기</li>
+</ul>
+<pre><code class="language-python=">train_pos_data = train_data.loc[train_data['is_duplicate'] == 1]
+train_neg_data = train_data.loc[train_data['is_duplicate'] == 0]
 
-import matplotlib.pyplot as plt
-plt.figure(figsize=(15,10))
-plt.hist(word_size, bins=50, facecolor='r', label='train')
+class_difference = len(train_neg_data) - len(train_pos_data)
+sample_frac = 1 - (class_difference / len(train_neg_data))
+
+train_neg_data = train_neg_data.sample(frac = sample_frac)
 </code></pre>
-<p><img src="https://i.imgur.com/TIsvbgs.png" alt=""></p>
-<hr>
-<h6 id="tags%3A-%EB%AA%A8%EB%8D%B8%EB%A7%81-modeling">tags: <code>모델링</code> <code>modeling</code> <a class="heading-anchor-permalink" href="#tags%3A-%EB%AA%A8%EB%8D%B8%EB%A7%81-modeling">#</a></h6>
-<p>word index ? tf-idf? 둘 중 뭐써야함?</p>
-<h3 id="tf-idf-vectorizer">Tf-IDF Vectorizer <a class="heading-anchor-permalink" href="#tf-idf-vectorizer">#</a></h3>
-<p>:question: 왜 analyzer = 'char’로 주지…? 왜 'word’로 준거랑 차이가 없지…? SHIIITTT!!</p>
-<h4 id="test">TEST <a class="heading-anchor-permalink" href="#test">#</a></h4>
-<ul>
-<li>analyzer=“char” &amp; ngram_range=(1,2): 0.782800</li>
-<li>analyzer=“char” &amp; ngram_range=(1,3): 0.859800</li>
-<li>analyzer=“char” &amp; ngram_range=(1,7): 0.850800</li>
-<li>analyzer=“word” &amp; ngram_range=(1,2): 0.887600</li>
+</li>
+<li>Character와 Word 단위로 문항을 나눠 그 길이로 box plot과 bar chart를 확인하는 행위는 무엇을 위함인가…?</li>
+<li>데이터의 보편적인 특징(물음표로 끝난다거나 대문자로 시작하는 것)은 데이터 전처리에서 제거하여 편향된 학습을 방지</li>
 </ul>
-<p><code>vectorizer = TfidfVectorizer(min_df = 0.0, analyzer=&quot;char&quot;, sublinear_tf=True, ngram_range=(1,3), max_features=5000)</code></p>
-<p>TfidfVectorizer 파라미터 정리</p>
+</li>
+<li>
+<p>XG Boost (Tree Boosting)</p>
 <ul>
-<li>min-df : 설정한 값 이상 등장하는 단어만 등록, 단어의 등장횟수가 아니라 문서의 수</li>
-<li>analyzer : 단어 단위로 볼지 문장 단위로 볼지</li>
-<li>ngram_range : 문자 혹은 단어의 묶음을 처리하는 범위, 단어를 기준으로 하고 (1, 1)로 놓았을 경우 벡터라이저와 같은 결과를 보임(단어 하나씩만 처리하기 때문) (1,2)로 놓았을 경우 go, go to 등이 개별 단어로 처리된다. 묶여야 의미가 살아나는 표현들을 처리하기 위한 파리미터</li>
-<li>max_feature : 각 벡터의 최대 길이를 처리</li>
-<li>sublinear_tf : 단어의 빈도 수에 대한 스무딩 여부, 로그값으로 변환해 값을 완만하게 처리</li>
+<li>앙상블이란 여러개의 학습 알고리즘을 사용해 더 좋은 성능을 얻음</li>
+<li>앙상블에는 배깅과 부스팅이 존재
+<ul>
+<li>Bagging: 여러개의 학습 알고리즘, 모델을 통해 각각 결과를 예측 후 모든 결과를 동등하게 취합하여 최종 결과를 얻음
+ex: Random Forest</li>
+<li>Boosting: 여러개의 학습 알고리즘, 모델의 결과를 순차적으로 취합, 잘못 예측한 부분에 가중치를 주어 재학습 진행</li>
 </ul>
-<pre><code class="language-python">import numpy as np 
-def sublinear_func(input): 
-    result = 1 + np.log(input) 
-    return result
+</li>
+<li>여러개의 의사결정 트리를 사용하되 결과들의 평균을 사용하는게 아니라 오답에 대한 가중치를 주어 재학습 진행</li>
+</ul>
+<pre><code class="language-python=">train_data = xgb.DMatrix(train_input.sum(axis=1), label=train_label) # 학습 데이터 읽어 오기
+eval_data = xgb.DMatrix(eval_input.sum(axis=1), label=eval_label) # 평가 데이터 읽어 오기
+
+data_list = [(train_data, 'train'), (eval_data, 'valid')]
+
+params = {} # 인자를 통해 XGB모델에 넣어 주자 
+params['objective'] = 'binary:logistic' # 로지스틱 예측을 통해서 
+params['eval_metric'] = 'rmse' # root mean square error를 사용  
+
+bst = xgb.train(params, train_data, num_boost_round = 1000, evals = data_list, early_stopping_rounds=10)
 </code></pre>
+<ul>
+<li>Bagging은 Train Data Set을 n개로 나누어 n개의 트리(모델)에 각각 학습을 시킨 후
+Evaluate Data Set으로 n개의 모델을 평가하는데 그 중 가장 평가 결과가 우수한 트리(모델)의 결과를 최종 결과로 사용</li>
+<li>XG Boosting은 Train Data Set을 n개의 트리(모델)에 학습 시킨 후
+Evaluate Data Set으로 n개의 모델을 평가하는데 평가 과정 중 오답인 데이터를 Train Data Set에 포함되도록 중요도를 조절하여 다음 학습 차례 때 해당 오답처리 되었던 데이터에 대해 정답이 될 수 있도록 학습을 진행</li>
+</ul>
+</li>
+</ul>
 
     </article>
 </div>

@@ -479,14 +479,14 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="Bagging and Boosting.html">Bagging and Boosting</a></li>
-<li><a class="active" href="Categorizer.html">Categorizer</a></li>
-<li><a class="" href="Chatbot.html">Chatbot</a></li>
-<li><a class="" href="Convolution.html">Convolution</a></li>
-<li><a class="" href="Embedding.html">Embedding</a></li>
-<li><a class="" href="LSTM RNN CNN.html">LSTM RNN CNN</a></li>
-<li><a class="" href="Preprocessing.html">Preprocessing</a></li>
-<li><a class="" href="Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="1-Convolution.html">Convolution</a></li>
+<li><a class="active" href="2-Embedding.html">Embedding</a></li>
+<li><a class="" href="3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="8-Chatbot.html">Chatbot</a></li>
 </ul>
 <li class="heading"><span>WebRTC</span></li>
 <ul>
@@ -505,9 +505,9 @@
 </ul>
 <li class="heading"><span>Flutter</span></li>
 <ul>
-<li><a class="" href="../5-Flutter/1.Setup.html">1.Setup</a></li>
-<li><a class="" href="../5-Flutter/2.Widget.html">2.Widget</a></li>
-<li><a class="" href="../5-Flutter/3.Assets.html">3.Assets</a></li>
+<li><a class="" href="../5-Flutter/1-Setup.html">Setup</a></li>
+<li><a class="" href="../5-Flutter/2-Widget.html">Widget</a></li>
+<li><a class="" href="../5-Flutter/3-Assets.html">Assets</a></li>
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
@@ -516,35 +516,63 @@
 </ul>
     </nav>
     <article id="main" class="content">
-        <h1 id="2021-02-09">2021-02-09 <a class="heading-anchor-permalink" href="#2021-02-09">#</a></h1>
-<h6 id="tags%3A-embedding-categorizing">tags: <code>Embedding</code> <code>Categorizing</code> <a class="heading-anchor-permalink" href="#tags%3A-embedding-categorizing">#</a></h6>
-<h3 id="gensim-word2vec">Gensim Word2Vec <a class="heading-anchor-permalink" href="#gensim-word2vec">#</a></h3>
-<p>? word2vec이면 <code>cbow</code> or  <code>skip-gram</code>일텐데 둘 중 뭘로 하려나?</p>
-<p>word2vec의 패러미터에 따라 모드를 선택할 수 있음. 1: skip-gram; otherwise CBOW <a href="https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec">document</a></p>
-<p>? Word2Vec Downsampling은 어떻게 이루어지나
-0.001일 경우 1000번 나오는걸 한번만 학습? 1000번 이상 나오면 그이후로는 학습을 하지 않는다?
-얼마나 자주 나온 단어를, 얼만큼 샘플링하여 학습하는거징?</p>
-<h3 id="randomforest">RandomForest <a class="heading-anchor-permalink" href="#randomforest">#</a></h3>
-<p>n개의 의사결정 트리를 통해 문장을 분류하는 기법
-패러미터</p>
-<ul>
-<li>n_estimators: 몇 개의 트리를 만들 것인지. 나중에 이 트리들의 결과값을 앙상블하여 최종 결과를 만듬</li>
-<li>max_depth: 각 tree의 최대 깊이. 디폴트일 경우 각 leaf가 pure하거나 min_samples_split개보다 적게 가지고 있을 때까지 확장됨.</li>
-<li>max_samples: train데이터에서 학습에 사용할 샘플 데이터 갯수</li>
-</ul>
-<h3 id="vectorizer">Vectorizer <a class="heading-anchor-permalink" href="#vectorizer">#</a></h3>
-<ul>
-<li>CountVectorizer: word index에서 각 단어별 빈도 수를 count</li>
-<li>TfIdf: 문장에서 단어의 중요도를 기반</li>
-<li>Word2Vec: CBow / Skip-Gram 알고리즘으로 단어끼리 유사도를 기반</li>
-</ul>
-<h3 id="categorizer">Categorizer <a class="heading-anchor-permalink" href="#categorizer">#</a></h3>
-<ul>
-<li>Linear Regression</li>
-<li>Random Forest</li>
-<li>KNN</li>
-<li>K-Means</li>
-</ul>
+        <h1 id="2021-01-28">2021-01-28 <a class="heading-anchor-permalink" href="#2021-01-28">#</a></h1>
+<h6 id="tags%3A-embedding">tags: <code>Embedding</code> <a class="heading-anchor-permalink" href="#tags%3A-embedding">#</a></h6>
+<h3 id="word-embedding-layer%EB%A5%BC-%ED%95%99%EC%8A%B5%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95">Word Embedding Layer를 학습시키는 방법 <a class="heading-anchor-permalink" href="#word-embedding-layer%EB%A5%BC-%ED%95%99%EC%8A%B5%EC%8B%9C%ED%82%A4%EB%8A%94-%EB%B0%A9%EB%B2%95">#</a></h3>
+<ol>
+<li>CBow: 주변의 단어(window size)로 하나의 단어를 추측하는 기법</li>
+<li>Skip-gram: 하나의 단어로 주변 단어들을 추측하는 기법</li>
+</ol>
+<pre><code>입력층 [1 * 단어 벡터 길이] * 가중치 [단어 벡터 길이 * 은닉층 길이] = 은닉층 [1 * 은닉층 길이]
+은닉층 [1 * 은닉층 길이] * 가중치 [은닉층 길이 * 단어 벡터 길이] = 출력층 [1 * 단어 벡터 길이]
+</code></pre>
+<h3 id="skip-gram-sample">Skip-gram sample <a class="heading-anchor-permalink" href="#skip-gram-sample">#</a></h3>
+<pre><code class="language-python=">import sys
+sys.path.append('..')
+import numpy as np
+from common.layers import MatMul, SoftmaxWithLoss
+
+
+class SimpleSkipGram:
+    def __init__(self, vocab_size, hidden_size):
+        V, H = vocab_size, hidden_size
+
+        # 가중치 초기화
+        W_in = 0.01 * np.random.randn(V, H).astype('f')
+        W_out = 0.01 * np.random.randn(H, V).astype('f')
+
+        # 계층 생성
+        self.in_layer = MatMul(W_in)
+        self.out_layer = MatMul(W_out)
+        self.loss_layer1 = SoftmaxWithLoss()
+        self.loss_layer2 = SoftmaxWithLoss()
+
+        # 모든 가중치와 기울기를 리스트에 모은다.
+        layers = [self.in_layer, self.out_layer]
+        self.params, self.grads = [], []
+        for layer in layers:
+            self.params += layer.params
+            self.grads += layer.grads
+
+        # 인스턴스 변수에 단어의 분산 표현을 저장한다.
+        self.word_vecs = W_in
+
+    def forward(self, contexts, target):
+        h = self.in_layer.forward(target)
+        s = self.out_layer.forward(h)
+        l1 = self.loss_layer1.forward(s, contexts[:, 0])
+        l2 = self.loss_layer2.forward(s, contexts[:, 1])
+        loss = l1 + l2
+        return loss
+
+    def backward(self, dout=1):
+        dl1 = self.loss_layer1.backward(dout)
+        dl2 = self.loss_layer2.backward(dout)
+        ds = dl1 + dl2
+        dh = self.out_layer.backward(ds)
+        self.in_layer.backward(dh)
+        return None
+</code></pre>
 
     </article>
 </div>

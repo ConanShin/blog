@@ -479,14 +479,14 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="Bagging and Boosting.html">Bagging and Boosting</a></li>
-<li><a class="" href="Categorizer.html">Categorizer</a></li>
-<li><a class="" href="Chatbot.html">Chatbot</a></li>
-<li><a class="active" href="Convolution.html">Convolution</a></li>
-<li><a class="" href="Embedding.html">Embedding</a></li>
-<li><a class="" href="LSTM RNN CNN.html">LSTM RNN CNN</a></li>
-<li><a class="" href="Preprocessing.html">Preprocessing</a></li>
-<li><a class="" href="Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="1-Convolution.html">Convolution</a></li>
+<li><a class="" href="2-Embedding.html">Embedding</a></li>
+<li><a class="" href="3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="active" href="8-Chatbot.html">Chatbot</a></li>
 </ul>
 <li class="heading"><span>WebRTC</span></li>
 <ul>
@@ -505,9 +505,9 @@
 </ul>
 <li class="heading"><span>Flutter</span></li>
 <ul>
-<li><a class="" href="../5-Flutter/1.Setup.html">1.Setup</a></li>
-<li><a class="" href="../5-Flutter/2.Widget.html">2.Widget</a></li>
-<li><a class="" href="../5-Flutter/3.Assets.html">3.Assets</a></li>
+<li><a class="" href="../5-Flutter/1-Setup.html">Setup</a></li>
+<li><a class="" href="../5-Flutter/2-Widget.html">Widget</a></li>
+<li><a class="" href="../5-Flutter/3-Assets.html">Assets</a></li>
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
@@ -516,48 +516,104 @@
 </ul>
     </nav>
     <article id="main" class="content">
-        <h1 id="2021-01-22">2021-01-22 <a class="heading-anchor-permalink" href="#2021-01-22">#</a></h1>
-<h6 id="tags%3A-convolution-dialation">tags: <code>Convolution</code> <code>Dialation</code> <a class="heading-anchor-permalink" href="#tags%3A-convolution-dialation">#</a></h6>
-<h4 id="dropout">dropout <a class="heading-anchor-permalink" href="#dropout">#</a></h4>
-<p>과적합 방지를 위한 정규화 방법, rate 파라미터의 비율만큼 dropout이 적용된다.</p>
-<h4 id="convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)">convolution(합성곱 연산) <a class="heading-anchor-permalink" href="#convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)">#</a></h4>
-<p><img src="https://i.imgur.com/Yf0pUmr.png" alt=""></p>
-<h4 id="dialation_rate">dialation_rate <a class="heading-anchor-permalink" href="#dialation_rate">#</a></h4>
-<p><img src="https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819" alt=""></p>
+        <h1 id="2021-03-16">2021-03-16 <a class="heading-anchor-permalink" href="#2021-03-16">#</a></h1>
+<h6 id="tags%3A-chatbot">tags: <code>Chatbot</code> <a class="heading-anchor-permalink" href="#tags%3A-chatbot">#</a></h6>
 <ul>
-<li>주변 픽셀의 Contextual Information을 고려하기 위함</li>
-<li>kernel size(receptive field)를 늘려서 주변 픽셀을 고려하기 되면 연산 복잡도가 증가됨</li>
-<li>0 padding을 통해 연산 복잡도는 줄이고 주변을 고려할 수 있는 convolution layer를 생성</li>
+<li>형태소 분석기를 이용한 품사 분석 전처리</li>
 </ul>
-<h4 id="strides">strides <a class="heading-anchor-permalink" href="#strides">#</a></h4>
-<p>필터가 적용되는 위치의 간격</p>
-<h4 id="receptive-field">receptive field <a class="heading-anchor-permalink" href="#receptive-field">#</a></h4>
-<p>kernel_size = output을 만들어내는 영역</p>
-<p>downsampling/upsampling: 데이터의 차원을 변경시켜 이미지를 압축하거나 늘리는 방식</p>
-<p>pooling/unpooling</p>
-<ul>
-<li>pooling: 가로 세로 방향의 공간을 줄이는 연산, 에를 들어 최대 풀링 2X2의 경우 2X2 사이즈 내에서 최값을 뽑아낸다.</li>
-<li>unpooling: 풀링의 반대, 같은 값으로 채우거나 0으로 채우는 등 여러 방법이 있다.</li>
-</ul>
-<p>data format:</p>
-<ul>
-<li>batch: 몇장의 사진을 이번 트레이닝에 input으로 사용할 것인가</li>
-<li>channel: 사진은 RGB로 3개의 채널을 가짐 (데이터의 속성 갯수)</li>
-</ul>
-<p>padding=‘same’ : input size와 같도록 맞춰준다</p>
-<p>conv1D</p>
-<ul>
-<li>:exclamation:우리가 헷갈렸던 부분 : 1D짜리 convolution을 적용한다고 생각했는데 (filter size가 1 * n 이라 생각했는데)</li>
-<li>실제 : convolution 방향이 1D였던 것(가로 방향으로만 convolution하도록 filter size가 자동으로 정해짐)</li>
-</ul>
-<pre><code class="language-python=">inputs = tf.keras.Input(shape = (1, 28, 28)) # (1)
-dropout = tf.keras.layers.Dropout(rate=0.2)(inputs)
-conv = tf.keras.layers.Conv1D(10, 3, padding='same', activation=tf.nn.relu)(inputs) # (2)
+<pre><code class="language-python=">query_NVA_token_sentences = list()
+answer_NVA_token_sentences = list()
+
+for s in query_sentences:
+    for token, tag in okt.pos(s.replace(' ', '')):
+        if tag == 'Noun' or tag == 'Verb' or tag == 'Adjective':
+            query_NVA_token_sentences.append(token)
+
+for s in answer_sentences:
+    for token, tag in okt.pos(s.replace(' ', '')):
+        if tag == 'Noun' or tag == 'Verb' or tag == 'Adjective':
+            answer_NVA_token_sentences.append(token)
+            
+query_NVA_token_sentences = ' '.join(query_NVA_token_sentences)
+answer_NVA_token_sentences = ' '.join(answer_NVA_token_sentences)
 </code></pre>
-<ol>
-<li>input size는 28*28</li>
-<li>input이 1D convolution을 통과하여 (28-2)<em>1 이 되고,  padding=‘same’ 옵션을 주었으니 input size와 같아지도록 padding을 추가하여 28</em>1이 됨. 채널 10이므로 28 * 1 * 10</li>
-</ol>
+<ul>
+<li>idx2char와 char2idx 딕셔너리 생성방법</li>
+</ul>
+<pre><code class="language-python=">def make_vocabulary(vocabulary_list):
+    # 리스트를 키가 단어이고 값이 인덱스인 딕셔너리를 만든다.
+    char2idx = {char: idx for idx, char in enumerate(vocabulary_list)}
+    # 리스트를 키가 인덱스이고 값이 단어인 딕셔너리를 만든다.
+    idx2char = {idx: char for idx, char in enumerate(vocabulary_list)}
+    return char2idx, idx2char
+</code></pre>
+<ul>
+<li>encoder processing</li>
+</ul>
+<pre><code class="language-python=">def enc_processing(value, dictionary, tokenize_as_morph=False):
+    sequences_input_index = []
+    sequences_length = []
+    if tokenize_as_morph:
+        value = prepro_like_morphlized(value)
+
+    # 한줄씩 불어온다.
+    for sequence in value:
+        # FILTERS = &quot;([~.,!?\&quot;':;)(])&quot;
+        sequence = re.sub(CHANGE_FILTER, &quot;&quot;, sequence)
+        sequence_index = []
+        # 문장을 스페이스 단위로 자르고 있다.
+        for word in sequence.split():
+            # 잘려진 단어들이 딕셔너리에 존재 하는지 보고 그 값을 가져와 sequence_index에 추가한다.
+            if dictionary.get(word) is not None:
+                sequence_index.extend([dictionary[word]])
+            # 잘려진 단어가 딕셔너리에 존재 하지 않는 경우 이므로 UNK(2)를 넣어 준다.
+            else:
+                sequence_index.extend([dictionary[UNK]])
+        # 문장 제한 길이보다 길어질 경우 뒤에 토큰을 자르고 있다.
+        if len(sequence_index) &gt; MAX_SEQUENCE:
+            sequence_index = sequence_index[:MAX_SEQUENCE]
+        # max_sequence_length보다 문장 길이가
+        # 작다면 빈 부분에 PAD(0)를 넣어준다.
+        sequence_index += (MAX_SEQUENCE - len(sequence_index)) * [dictionary[PAD]]
+        # 인덱스화 되어 있는 값을
+        # sequences_input_index에 넣어 준다.
+        sequences_input_index.append(sequence_index)
+    return np.asarray(sequences_input_index)
+</code></pre>
+<ul>
+<li>
+<p>decoder processing</p>
+<ul>
+<li>디코더 입력값: <code>&lt;SOS&gt;, 그래, 오랜만이야, &lt;PAD&gt;</code></li>
+<li>디코더 타깃값: <code>그래, 오랜만이야, &lt;END&gt;, &lt;PAD&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>encode</p>
+</li>
+</ul>
+<pre><code class="language-python=">class Encoder(tf.keras.layers.Layer):
+def __init__(self, vocab_size, embedding_dim, enc_units, batch_sz):
+    super(Encoder, self).__init__()
+    self.batch_sz = batch_sz
+    self.enc_units = enc_units
+    self.vocab_size = vocab_size 
+    self.embedding_dim = embedding_dim          
+
+    self.embedding = tf.keras.layers.Embedding(self.vocab_size, self.embedding_dim)
+    self.gru = tf.keras.layers.GRU(self.enc_units,
+                                   return_sequences=True,
+                                   return_state=True,
+                                   recurrent_initializer='glorot_uniform')
+
+def call(self, x, hidden):
+    x = self.embedding(x)
+    output, state = self.gru(x, initial_state = hidden)
+    return output, state
+
+def initialize_hidden_state(self, inp):
+    return tf.zeros((tf.shape(inp)[0], self.enc_units))
+</code></pre>
 
     </article>
 </div>

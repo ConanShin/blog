@@ -479,14 +479,14 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="Bagging and Boosting.html">Bagging and Boosting</a></li>
-<li><a class="" href="Categorizer.html">Categorizer</a></li>
-<li><a class="active" href="Chatbot.html">Chatbot</a></li>
-<li><a class="" href="Convolution.html">Convolution</a></li>
-<li><a class="" href="Embedding.html">Embedding</a></li>
-<li><a class="" href="LSTM RNN CNN.html">LSTM RNN CNN</a></li>
-<li><a class="" href="Preprocessing.html">Preprocessing</a></li>
-<li><a class="" href="Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="../1-Machine Learning/1-Convolution.html">Convolution</a></li>
+<li><a class="" href="../1-Machine Learning/2-Embedding.html">Embedding</a></li>
+<li><a class="" href="../1-Machine Learning/3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="../1-Machine Learning/4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="../1-Machine Learning/5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="../1-Machine Learning/6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="../1-Machine Learning/7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="../1-Machine Learning/8-Chatbot.html">Chatbot</a></li>
 </ul>
 <li class="heading"><span>WebRTC</span></li>
 <ul>
@@ -505,9 +505,9 @@
 </ul>
 <li class="heading"><span>Flutter</span></li>
 <ul>
-<li><a class="" href="../5-Flutter/1.Setup.html">1.Setup</a></li>
-<li><a class="" href="../5-Flutter/2.Widget.html">2.Widget</a></li>
-<li><a class="" href="../5-Flutter/3.Assets.html">3.Assets</a></li>
+<li><a class="" href="1-Setup.html">Setup</a></li>
+<li><a class="active" href="2-Widget.html">Widget</a></li>
+<li><a class="" href="3-Assets.html">Assets</a></li>
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
@@ -516,104 +516,59 @@
 </ul>
     </nav>
     <article id="main" class="content">
-        <h1 id="2021-03-16">2021-03-16 <a class="heading-anchor-permalink" href="#2021-03-16">#</a></h1>
-<h6 id="tags%3A-chatbot">tags: <code>Chatbot</code> <a class="heading-anchor-permalink" href="#tags%3A-chatbot">#</a></h6>
-<ul>
-<li>형태소 분석기를 이용한 품사 분석 전처리</li>
-</ul>
-<pre><code class="language-python=">query_NVA_token_sentences = list()
-answer_NVA_token_sentences = list()
-
-for s in query_sentences:
-    for token, tag in okt.pos(s.replace(' ', '')):
-        if tag == 'Noun' or tag == 'Verb' or tag == 'Adjective':
-            query_NVA_token_sentences.append(token)
-
-for s in answer_sentences:
-    for token, tag in okt.pos(s.replace(' ', '')):
-        if tag == 'Noun' or tag == 'Verb' or tag == 'Adjective':
-            answer_NVA_token_sentences.append(token)
-            
-query_NVA_token_sentences = ' '.join(query_NVA_token_sentences)
-answer_NVA_token_sentences = ' '.join(answer_NVA_token_sentences)
-</code></pre>
-<ul>
-<li>idx2char와 char2idx 딕셔너리 생성방법</li>
-</ul>
-<pre><code class="language-python=">def make_vocabulary(vocabulary_list):
-    # 리스트를 키가 단어이고 값이 인덱스인 딕셔너리를 만든다.
-    char2idx = {char: idx for idx, char in enumerate(vocabulary_list)}
-    # 리스트를 키가 인덱스이고 값이 단어인 딕셔너리를 만든다.
-    idx2char = {idx: char for idx, char in enumerate(vocabulary_list)}
-    return char2idx, idx2char
-</code></pre>
-<ul>
-<li>encoder processing</li>
-</ul>
-<pre><code class="language-python=">def enc_processing(value, dictionary, tokenize_as_morph=False):
-    sequences_input_index = []
-    sequences_length = []
-    if tokenize_as_morph:
-        value = prepro_like_morphlized(value)
-
-    # 한줄씩 불어온다.
-    for sequence in value:
-        # FILTERS = &quot;([~.,!?\&quot;':;)(])&quot;
-        sequence = re.sub(CHANGE_FILTER, &quot;&quot;, sequence)
-        sequence_index = []
-        # 문장을 스페이스 단위로 자르고 있다.
-        for word in sequence.split():
-            # 잘려진 단어들이 딕셔너리에 존재 하는지 보고 그 값을 가져와 sequence_index에 추가한다.
-            if dictionary.get(word) is not None:
-                sequence_index.extend([dictionary[word]])
-            # 잘려진 단어가 딕셔너리에 존재 하지 않는 경우 이므로 UNK(2)를 넣어 준다.
-            else:
-                sequence_index.extend([dictionary[UNK]])
-        # 문장 제한 길이보다 길어질 경우 뒤에 토큰을 자르고 있다.
-        if len(sequence_index) &gt; MAX_SEQUENCE:
-            sequence_index = sequence_index[:MAX_SEQUENCE]
-        # max_sequence_length보다 문장 길이가
-        # 작다면 빈 부분에 PAD(0)를 넣어준다.
-        sequence_index += (MAX_SEQUENCE - len(sequence_index)) * [dictionary[PAD]]
-        # 인덱스화 되어 있는 값을
-        # sequences_input_index에 넣어 준다.
-        sequences_input_index.append(sequence_index)
-    return np.asarray(sequences_input_index)
-</code></pre>
+        <h1 id="chapter-2.-widget">Chapter 2. Widget <a class="heading-anchor-permalink" href="#chapter-2.-widget">#</a></h1>
+<h6 id="tags%3A-flutter-stateless-widget-stateful-widget">tags: <code>Flutter</code> <code>Stateless Widget</code> <code>Stateful Widget</code> <a class="heading-anchor-permalink" href="#tags%3A-flutter-stateless-widget-stateful-widget">#</a></h6>
 <ul>
 <li>
-<p>decoder processing</p>
+<p>Flutter Widget이란</p>
 <ul>
-<li>디코더 입력값: <code>&lt;SOS&gt;, 그래, 오랜만이야, &lt;PAD&gt;</code></li>
-<li>디코더 타깃값: <code>그래, 오랜만이야, &lt;END&gt;, &lt;PAD&gt;</code></li>
+<li>
+<p>App bar, text, icon, button 등 화면을 구성하는 컴포넌트 단위
+<img src="https://i.imgur.com/Sb7DlQE.png" alt=""></p>
+</li>
+<li>
+<p>Layer 및 위치를 담당
+<img src="https://i.imgur.com/vCN0IF9.png" alt=""></p>
+</li>
+<li>
+<p>Application 전체도 하나의 위젯</p>
+</li>
 </ul>
 </li>
 <li>
-<p>encode</p>
+<p>LifeCycle
+<img src="https://i.imgur.com/llH7dRF.png" alt=""></p>
+<ul>
+<li><a href="https://mobikul.com/lifecycle-of-a-flutter-app/">https://mobikul.com/lifecycle-of-a-flutter-app/</a></li>
+</ul>
+</li>
+<li>
+<p>기본 구조</p>
+<ul>
+<li>Application -&gt; MaterialApp -&gt; Page -&gt; Scaffold
+<img src="https://i.imgur.com/RQwhPsq.png" alt=""></li>
+<li>MaterialApp: <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html">https://api.flutter.dev/flutter/material/MaterialApp-class.html</a></li>
+<li>Scaffold: <a href="https://api.flutter.dev/flutter/material/Scaffold-class.html">https://api.flutter.dev/flutter/material/Scaffold-class.html</a></li>
+</ul>
+</li>
+<li>
+<p>Widget 종류</p>
+<ul>
+<li>Stateful Widget:
+<ul>
+<li>계속 움직이며 변화가 생길 수 있는 동적인 위젯</li>
+<li>setState함수를 이용하여 stateful 컴포넌트에 존재하는 state 변수를 수정하고 rerender 진행</li>
+</ul>
+</li>
+<li>Stateless Widget:
+<ul>
+<li>변화가 없는 정적인 위젯</li>
+<li>순수 UI 목적을 가진 컴포넌트로 변동하는 state를 내포할 수 없음</li>
+</ul>
 </li>
 </ul>
-<pre><code class="language-python=">class Encoder(tf.keras.layers.Layer):
-def __init__(self, vocab_size, embedding_dim, enc_units, batch_sz):
-    super(Encoder, self).__init__()
-    self.batch_sz = batch_sz
-    self.enc_units = enc_units
-    self.vocab_size = vocab_size 
-    self.embedding_dim = embedding_dim          
-
-    self.embedding = tf.keras.layers.Embedding(self.vocab_size, self.embedding_dim)
-    self.gru = tf.keras.layers.GRU(self.enc_units,
-                                   return_sequences=True,
-                                   return_state=True,
-                                   recurrent_initializer='glorot_uniform')
-
-def call(self, x, hidden):
-    x = self.embedding(x)
-    output, state = self.gru(x, initial_state = hidden)
-    return output, state
-
-def initialize_hidden_state(self, inp):
-    return tf.zeros((tf.shape(inp)[0], self.enc_units))
-</code></pre>
+</li>
+</ul>
 
     </article>
 </div>
