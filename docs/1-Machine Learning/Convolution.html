@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /*! ADAPTED
+      Typeplate : Starter Kit
+      URL ........... http://typeplate.com
+      Version ....... 3.0.2
+      Github ........ https://github.com/typeplate/starter-kit
+      Authors ....... Dennis Gaebel (@gryghostvisuals) & Zachary Kain (@zakkain)
+      License ....... Creative Commmons Attribution 3.0
+      License URL ... https://github.com/typeplate/starter-kit/blob/master/license.txt
+      */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-rendering: optimizeLegibility;
+            line-height: 1;
+            margin-top: 0;
+            color: #222;
+        }
+
+        blockquote + figcaption cite {
+            display: block;
+            font-size: inherit;
+            text-align: right;
+        }
+
+        body {
+            word-wrap: break-word;
+        }
+
+        pre code {
+            word-wrap: normal;
+        }
+
+        body {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            color: #444;
+        }
+
+        h1 {
+            font-size: 2em;
+            /* 2*16 = 32 */
+        }
+
+        h2 {
+            font-size: 1.5em;
+            /* 1.5*16 = 24 */
+        }
+
+        h3 {
+            font-size: 1.17em;
+            /* 1.17*16 = 18.72 */
+        }
+
+        h4 {
+            font-size: 1em;
+            /* 1*16 = 16 */
+        }
+
+        h5 {
+            font-size: 0.83em;
+            /* 0.83*16 = 13.28 */
+        }
+
+        h6 {
+            font-size: 0.75em;
+            /* 0.75*16 = 12 */
+        }
+
+        h1 {
+            margin: 2.42424rem 0 1.454544rem;
+        }
+
+        h2 {
+            margin: 2.0202rem 0 1.21212rem;
+        }
+
+        h3 {
+            margin: 1.61616rem 0 1rem;
+        }
+
+        h4 {
+            margin: 1.21212rem 0 1;
+        }
+
+        h5 {
+            margin: 0.80808rem 0;
+        }
+
+        h6 {
+            margin: 0.70707rem 0;
+        }
+
+        p {
+            margin: auto auto 1.5rem;
+        }
+
+        small {
+            font-size: 65%;
+        }
+
+        input,
+        abbr,
+        acronym,
+        blockquote,
+        code,
+        kbd,
+        q,
+        samp,
+        var {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+
+        pre {
+            white-space: pre;
+        }
+
+        pre code {
+            white-space: -moz-pre-wrap;
+            white-space: pre-wrap;
+        }
+
+        code {
+            white-space: pre;
+            font-family: SF Mono, Consolas, Dejavu Sans Mono, Menlo, monospace;
+        }
+
+        abbr {
+            -webkit-font-variant: small-caps;
+            -moz-font-variant: small-caps;
+            -ms-font-variant: small-caps;
+            font-variant: small-caps;
+            font-weight: 600;
+            text-transform: lowercase;
+            color: gray;
+        }
+
+        abbr[title]:hover {
+            cursor: help;
+        }
+
+        /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol";
+            color: #444;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        code,
+        pre {
+            background-color: #f5f5f5;
+            color: #444;
+            border-radius: 2px;
+            text-shadow: 0px 1px 0px white;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+        }
+
+        pre code {
+            border: none;
+            box-shadow: none;
+        }
+
+        pre {
+            padding: 0.5em;
+        }
+
+        code {
+            display: inline-block;
+            padding: 0 0.5em;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        table {
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        table th,
+        table td {
+            padding: 0.3em 0.7em;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #444;
+        }
+
+        table td {
+            border: 1px solid #f5f5f5;
+        }
+
+        /* Add transition to containers so they can push in and out. */
+
+        #layout,
+        #menu,
+        .menu-link {
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -ms-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        /* This is the parent `<div>` that contains the menu and the content area. */
+
+        #layout {
+            position: relative;
+            padding-left: 0;
+        }
+
+        #layout.active #menu {
+            left: 250px;
+            width: 250px;
+        }
+
+        #layout.active .menu-link {
+            left: 250px;
+        }
+
+        /* The content `<div>` is where all your content goes. */
+
+        .content {
+            margin: 50px auto;
+            padding: 0 2em;
+            max-width: 80ex;
+            line-height: 1.6em;
+        }
+
+        /*
+        The `#menu` `<div>` is the parent `<div>` that contains the menu that
+        appears on the left side of the page.
+        */
+
+        #menu {
+            margin-left: -250px;
+            /* "#menu" width */
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            /* so the menu or its navicon stays above all content */
+            background: #f4f4f4;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: 0.9em;
+        }
+
+        @media print {
+            #menu,
+            .menu-link {
+                display: none !important;
+            }
+        }
+
+        a,
+        a * {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        /* All anchors inside the menu should be styled like this. */
+
+        #menu a {
+            display: block;
+            padding: 0.5em 0.5em;
+        }
+
+        #menu a:first-letter {
+            text-transform: capitalize;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1em 0.5em;
+        }
+
+        #menu ul ul {
+            margin-top: 0.5em;
+            margin-left: 0.5em;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Change color of the anchor links on hover/focus. */
+
+        #menu li a:hover,
+        #menu li a:focus {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* This styles the selected menu item `<li>`. */
+
+        #menu li a.active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* This styles a link within a selected menu item `<li>`. */
+
+        #menu li a.active {
+            color: #222;
+        }
+
+        /* This styles the menu heading. */
+
+        #menu li.heading {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        #menu li.heading > * {
+            padding: 0.5em;
+            display: block;
+        }
+
+        #menu li.heading a {
+            color: #0c68af;
+        }
+
+        /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+        /*
+        `.menu-link` represents the responsive menu toggle that shows/hides on
+        small screens.
+        */
+
+        .menu-link {
+            position: fixed;
+            display: block;
+            /* show this only on small screens */
+            top: 0;
+            left: 0;
+            /* "#menu width" */
+            font-size: 10px;
+            /* change this value to increase/decrease button size */
+            z-index: 10;
+            width: 2em;
+            height: auto;
+            padding: 1.6em 1.2em;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .menu-link:hover {
+            background: #f4f4f4;
+        }
+
+        .menu-link span {
+            position: relative;
+            display: block;
+        }
+
+        .menu-link span,
+        .menu-link span:before,
+        .menu-link span:after {
+            background-color: #555;
+            width: 100%;
+            height: 0.2em;
+            border-radius: 1em;
+        }
+
+        .menu-link span:before,
+        .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+
+        /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+        @media (min-width: 48em) {
+            .header,
+            .content {
+                padding-left: 2em;
+                padding-right: 2em;
+            }
+
+            #layout {
+                padding-left: 250px;
+                /* left col width "#menu" */
+                left: 0;
+            }
+            #menu {
+                left: 250px;
+            }
+
+            .menu-link {
+                position: fixed;
+                left: 250px;
+                display: none;
+            }
+
+            #layout.active .menu-link {
+                left: 250px;
+            }
+        }
+
+        @media (max-width: 48em) {
+            /* Only apply this when the window is small. Otherwise, the following case results in extra padding on the left:
+             * Make the window small.
+             * Tap the menu to trigger the active state.
+             * Make the window large again.
+             */
+            #layout.active {
+                position: relative;
+                left: 250px;
+            }
+        }
+
+        /* Heading anchors and permalinks */
+        h1[id],
+        h2[id],
+        h3[id],
+        h4[id],
+        h5[id],
+        h6[id] {
+            position: relative;
+        }
+        .heading-anchor-permalink {
+            /* Position the permalink to the left of the title */
+            position: absolute;
+            right: 100%;
+            /* Add some spacing as padding to not lose the hover */
+            padding-right: 0.6rem;
+            /* Make it only visible on heading hover, see below */
+            opacity: 0;
+        }
+        h1[id]:hover .heading-anchor-permalink,
+        h2[id]:hover .heading-anchor-permalink,
+        h3[id]:hover .heading-anchor-permalink,
+        h4[id]:hover .heading-anchor-permalink,
+        h5[id]:hover .heading-anchor-permalink,
+        h6[id]:hover .heading-anchor-permalink {
+            opacity: 0.5;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+</head>
+
+<body>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <nav id="menu">
+        <ul>
+<li><a class="" href="../index.html">index</a></li>
+<li class="heading"><span>Machine Learning</span></li>
+<ul>
+<li><a class="" href="Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="Categorizer.html">Categorizer</a></li>
+<li><a class="" href="Chatbot.html">Chatbot</a></li>
+<li><a class="active" href="Convolution.html">Convolution</a></li>
+<li><a class="" href="Embedding.html">Embedding</a></li>
+<li><a class="" href="LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="Sentiment Modeling.html">Sentiment Modeling</a></li>
+</ul>
+<li class="heading"><span>WebRTC</span></li>
+<ul>
+<li><a class="" href="../2-WebRTC/APIs.html">APIs</a></li>
+<li><a class="" href="../2-WebRTC/Mechanism.html">Mechanism</a></li>
+<li><a class="" href="../2-WebRTC/Signaling.html">Signaling</a></li>
+</ul>
+<li class="heading"><span>Azure</span></li>
+<ul>
+<li><a class="" href="../3-Azure/App Service Warmer.html">App Service Warmer</a></li>
+<li><a class="" href="../3-Azure/Deployment.html">Deployment</a></li>
+</ul>
+<li class="heading"><span>Zoom</span></li>
+<ul>
+<li><a class="" href="../4-Zoom/API 사용기.html">API 사용기</a></li>
+</ul>
+<li class="heading"><span>Flutter</span></li>
+<ul>
+<li><a class="" href="../5-Flutter/1.Setup.html">1.Setup</a></li>
+<li><a class="" href="../5-Flutter/2.Widget.html">2.Widget</a></li>
+<li><a class="" href="../5-Flutter/3.Assets.html">3.Assets</a></li>
+</ul>
+<li class="heading"><span>ETC</span></li>
+<ul>
+<li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
+</ul>
+</ul>
+    </nav>
+    <article id="main" class="content">
+        <h1 id="2021-01-22">2021-01-22 <a class="heading-anchor-permalink" href="#2021-01-22">#</a></h1>
+<h6 id="tags%3A-convolution-dialation">tags: <code>Convolution</code> <code>Dialation</code> <a class="heading-anchor-permalink" href="#tags%3A-convolution-dialation">#</a></h6>
+<h4 id="dropout">dropout <a class="heading-anchor-permalink" href="#dropout">#</a></h4>
+<p>과적합 방지를 위한 정규화 방법, rate 파라미터의 비율만큼 dropout이 적용된다.</p>
+<h4 id="convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)">convolution(합성곱 연산) <a class="heading-anchor-permalink" href="#convolution(%ED%95%A9%EC%84%B1%EA%B3%B1-%EC%97%B0%EC%82%B0)">#</a></h4>
+<p><img src="https://i.imgur.com/Yf0pUmr.png" alt=""></p>
+<h4 id="dialation_rate">dialation_rate <a class="heading-anchor-permalink" href="#dialation_rate">#</a></h4>
+<p><img src="https://qph.fs.quoracdn.net/main-qimg-d9025e88d7d792e26f4040b767b25819" alt=""></p>
+<ul>
+<li>주변 픽셀의 Contextual Information을 고려하기 위함</li>
+<li>kernel size(receptive field)를 늘려서 주변 픽셀을 고려하기 되면 연산 복잡도가 증가됨</li>
+<li>0 padding을 통해 연산 복잡도는 줄이고 주변을 고려할 수 있는 convolution layer를 생성</li>
+</ul>
+<h4 id="strides">strides <a class="heading-anchor-permalink" href="#strides">#</a></h4>
+<p>필터가 적용되는 위치의 간격</p>
+<h4 id="receptive-field">receptive field <a class="heading-anchor-permalink" href="#receptive-field">#</a></h4>
+<p>kernel_size = output을 만들어내는 영역</p>
+<p>downsampling/upsampling: 데이터의 차원을 변경시켜 이미지를 압축하거나 늘리는 방식</p>
+<p>pooling/unpooling</p>
+<ul>
+<li>pooling: 가로 세로 방향의 공간을 줄이는 연산, 에를 들어 최대 풀링 2X2의 경우 2X2 사이즈 내에서 최값을 뽑아낸다.</li>
+<li>unpooling: 풀링의 반대, 같은 값으로 채우거나 0으로 채우는 등 여러 방법이 있다.</li>
+</ul>
+<p>data format:</p>
+<ul>
+<li>batch: 몇장의 사진을 이번 트레이닝에 input으로 사용할 것인가</li>
+<li>channel: 사진은 RGB로 3개의 채널을 가짐 (데이터의 속성 갯수)</li>
+</ul>
+<p>padding=‘same’ : input size와 같도록 맞춰준다</p>
+<p>conv1D</p>
+<ul>
+<li>:exclamation:우리가 헷갈렸던 부분 : 1D짜리 convolution을 적용한다고 생각했는데 (filter size가 1 * n 이라 생각했는데)</li>
+<li>실제 : convolution 방향이 1D였던 것(가로 방향으로만 convolution하도록 filter size가 자동으로 정해짐)</li>
+</ul>
+<pre><code class="language-python=">inputs = tf.keras.Input(shape = (1, 28, 28)) # (1)
+dropout = tf.keras.layers.Dropout(rate=0.2)(inputs)
+conv = tf.keras.layers.Conv1D(10, 3, padding='same', activation=tf.nn.relu)(inputs) # (2)
+</code></pre>
+<ol>
+<li>input size는 28*28</li>
+<li>input이 1D convolution을 통과하여 (28-2)<em>1 이 되고,  padding=‘same’ 옵션을 주었으니 input size와 같아지도록 padding을 추가하여 28</em>1이 됨. 채널 10이므로 28 * 1 * 10</li>
+</ol>
+
+    </article>
+</div>
+<script>
+    // Load contents.json if you need it
+</script>
+<script>
+    // FROM http://purecss.io/js/ui.js
+    (function(window, document) {
+        var layout = document.getElementById("layout"),
+            menu = document.getElementById("menu"),
+            menuLink = document.getElementById("menuLink");
+
+        function toggleClass(element, className) {
+            var classes = element.className.split(/\s+/),
+                length = classes.length,
+                i = 0;
+
+            for (; i < length; i++) {
+                if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                }
+            }
+            // The className is not found
+            if (length === classes.length) {
+                classes.push(className);
+            }
+
+            element.className = classes.join(" ");
+        }
+
+        menuLink.onclick = function(e) {
+            var active = "active";
+
+            e.preventDefault();
+            toggleClass(layout, active);
+            toggleClass(menu, active);
+            toggleClass(menuLink, active);
+        };
+    })(this, this.document);
+</script>
+</body>
+</html>

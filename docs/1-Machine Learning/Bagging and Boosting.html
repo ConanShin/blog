@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /*! ADAPTED
+      Typeplate : Starter Kit
+      URL ........... http://typeplate.com
+      Version ....... 3.0.2
+      Github ........ https://github.com/typeplate/starter-kit
+      Authors ....... Dennis Gaebel (@gryghostvisuals) & Zachary Kain (@zakkain)
+      License ....... Creative Commmons Attribution 3.0
+      License URL ... https://github.com/typeplate/starter-kit/blob/master/license.txt
+      */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-rendering: optimizeLegibility;
+            line-height: 1;
+            margin-top: 0;
+            color: #222;
+        }
+
+        blockquote + figcaption cite {
+            display: block;
+            font-size: inherit;
+            text-align: right;
+        }
+
+        body {
+            word-wrap: break-word;
+        }
+
+        pre code {
+            word-wrap: normal;
+        }
+
+        body {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            color: #444;
+        }
+
+        h1 {
+            font-size: 2em;
+            /* 2*16 = 32 */
+        }
+
+        h2 {
+            font-size: 1.5em;
+            /* 1.5*16 = 24 */
+        }
+
+        h3 {
+            font-size: 1.17em;
+            /* 1.17*16 = 18.72 */
+        }
+
+        h4 {
+            font-size: 1em;
+            /* 1*16 = 16 */
+        }
+
+        h5 {
+            font-size: 0.83em;
+            /* 0.83*16 = 13.28 */
+        }
+
+        h6 {
+            font-size: 0.75em;
+            /* 0.75*16 = 12 */
+        }
+
+        h1 {
+            margin: 2.42424rem 0 1.454544rem;
+        }
+
+        h2 {
+            margin: 2.0202rem 0 1.21212rem;
+        }
+
+        h3 {
+            margin: 1.61616rem 0 1rem;
+        }
+
+        h4 {
+            margin: 1.21212rem 0 1;
+        }
+
+        h5 {
+            margin: 0.80808rem 0;
+        }
+
+        h6 {
+            margin: 0.70707rem 0;
+        }
+
+        p {
+            margin: auto auto 1.5rem;
+        }
+
+        small {
+            font-size: 65%;
+        }
+
+        input,
+        abbr,
+        acronym,
+        blockquote,
+        code,
+        kbd,
+        q,
+        samp,
+        var {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+
+        pre {
+            white-space: pre;
+        }
+
+        pre code {
+            white-space: -moz-pre-wrap;
+            white-space: pre-wrap;
+        }
+
+        code {
+            white-space: pre;
+            font-family: SF Mono, Consolas, Dejavu Sans Mono, Menlo, monospace;
+        }
+
+        abbr {
+            -webkit-font-variant: small-caps;
+            -moz-font-variant: small-caps;
+            -ms-font-variant: small-caps;
+            font-variant: small-caps;
+            font-weight: 600;
+            text-transform: lowercase;
+            color: gray;
+        }
+
+        abbr[title]:hover {
+            cursor: help;
+        }
+
+        /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol";
+            color: #444;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        code,
+        pre {
+            background-color: #f5f5f5;
+            color: #444;
+            border-radius: 2px;
+            text-shadow: 0px 1px 0px white;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+        }
+
+        pre code {
+            border: none;
+            box-shadow: none;
+        }
+
+        pre {
+            padding: 0.5em;
+        }
+
+        code {
+            display: inline-block;
+            padding: 0 0.5em;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        table {
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        table th,
+        table td {
+            padding: 0.3em 0.7em;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #444;
+        }
+
+        table td {
+            border: 1px solid #f5f5f5;
+        }
+
+        /* Add transition to containers so they can push in and out. */
+
+        #layout,
+        #menu,
+        .menu-link {
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -ms-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        /* This is the parent `<div>` that contains the menu and the content area. */
+
+        #layout {
+            position: relative;
+            padding-left: 0;
+        }
+
+        #layout.active #menu {
+            left: 250px;
+            width: 250px;
+        }
+
+        #layout.active .menu-link {
+            left: 250px;
+        }
+
+        /* The content `<div>` is where all your content goes. */
+
+        .content {
+            margin: 50px auto;
+            padding: 0 2em;
+            max-width: 80ex;
+            line-height: 1.6em;
+        }
+
+        /*
+        The `#menu` `<div>` is the parent `<div>` that contains the menu that
+        appears on the left side of the page.
+        */
+
+        #menu {
+            margin-left: -250px;
+            /* "#menu" width */
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            /* so the menu or its navicon stays above all content */
+            background: #f4f4f4;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: 0.9em;
+        }
+
+        @media print {
+            #menu,
+            .menu-link {
+                display: none !important;
+            }
+        }
+
+        a,
+        a * {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        /* All anchors inside the menu should be styled like this. */
+
+        #menu a {
+            display: block;
+            padding: 0.5em 0.5em;
+        }
+
+        #menu a:first-letter {
+            text-transform: capitalize;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1em 0.5em;
+        }
+
+        #menu ul ul {
+            margin-top: 0.5em;
+            margin-left: 0.5em;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Change color of the anchor links on hover/focus. */
+
+        #menu li a:hover,
+        #menu li a:focus {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* This styles the selected menu item `<li>`. */
+
+        #menu li a.active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* This styles a link within a selected menu item `<li>`. */
+
+        #menu li a.active {
+            color: #222;
+        }
+
+        /* This styles the menu heading. */
+
+        #menu li.heading {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        #menu li.heading > * {
+            padding: 0.5em;
+            display: block;
+        }
+
+        #menu li.heading a {
+            color: #0c68af;
+        }
+
+        /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+        /*
+        `.menu-link` represents the responsive menu toggle that shows/hides on
+        small screens.
+        */
+
+        .menu-link {
+            position: fixed;
+            display: block;
+            /* show this only on small screens */
+            top: 0;
+            left: 0;
+            /* "#menu width" */
+            font-size: 10px;
+            /* change this value to increase/decrease button size */
+            z-index: 10;
+            width: 2em;
+            height: auto;
+            padding: 1.6em 1.2em;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .menu-link:hover {
+            background: #f4f4f4;
+        }
+
+        .menu-link span {
+            position: relative;
+            display: block;
+        }
+
+        .menu-link span,
+        .menu-link span:before,
+        .menu-link span:after {
+            background-color: #555;
+            width: 100%;
+            height: 0.2em;
+            border-radius: 1em;
+        }
+
+        .menu-link span:before,
+        .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+
+        /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+        @media (min-width: 48em) {
+            .header,
+            .content {
+                padding-left: 2em;
+                padding-right: 2em;
+            }
+
+            #layout {
+                padding-left: 250px;
+                /* left col width "#menu" */
+                left: 0;
+            }
+            #menu {
+                left: 250px;
+            }
+
+            .menu-link {
+                position: fixed;
+                left: 250px;
+                display: none;
+            }
+
+            #layout.active .menu-link {
+                left: 250px;
+            }
+        }
+
+        @media (max-width: 48em) {
+            /* Only apply this when the window is small. Otherwise, the following case results in extra padding on the left:
+             * Make the window small.
+             * Tap the menu to trigger the active state.
+             * Make the window large again.
+             */
+            #layout.active {
+                position: relative;
+                left: 250px;
+            }
+        }
+
+        /* Heading anchors and permalinks */
+        h1[id],
+        h2[id],
+        h3[id],
+        h4[id],
+        h5[id],
+        h6[id] {
+            position: relative;
+        }
+        .heading-anchor-permalink {
+            /* Position the permalink to the left of the title */
+            position: absolute;
+            right: 100%;
+            /* Add some spacing as padding to not lose the hover */
+            padding-right: 0.6rem;
+            /* Make it only visible on heading hover, see below */
+            opacity: 0;
+        }
+        h1[id]:hover .heading-anchor-permalink,
+        h2[id]:hover .heading-anchor-permalink,
+        h3[id]:hover .heading-anchor-permalink,
+        h4[id]:hover .heading-anchor-permalink,
+        h5[id]:hover .heading-anchor-permalink,
+        h6[id]:hover .heading-anchor-permalink {
+            opacity: 0.5;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+</head>
+
+<body>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <nav id="menu">
+        <ul>
+<li><a class="" href="../index.html">index</a></li>
+<li class="heading"><span>Machine Learning</span></li>
+<ul>
+<li><a class="active" href="Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="Categorizer.html">Categorizer</a></li>
+<li><a class="" href="Chatbot.html">Chatbot</a></li>
+<li><a class="" href="Convolution.html">Convolution</a></li>
+<li><a class="" href="Embedding.html">Embedding</a></li>
+<li><a class="" href="LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="Sentiment Modeling.html">Sentiment Modeling</a></li>
+</ul>
+<li class="heading"><span>WebRTC</span></li>
+<ul>
+<li><a class="" href="../2-WebRTC/APIs.html">APIs</a></li>
+<li><a class="" href="../2-WebRTC/Mechanism.html">Mechanism</a></li>
+<li><a class="" href="../2-WebRTC/Signaling.html">Signaling</a></li>
+</ul>
+<li class="heading"><span>Azure</span></li>
+<ul>
+<li><a class="" href="../3-Azure/App Service Warmer.html">App Service Warmer</a></li>
+<li><a class="" href="../3-Azure/Deployment.html">Deployment</a></li>
+</ul>
+<li class="heading"><span>Zoom</span></li>
+<ul>
+<li><a class="" href="../4-Zoom/API 사용기.html">API 사용기</a></li>
+</ul>
+<li class="heading"><span>Flutter</span></li>
+<ul>
+<li><a class="" href="../5-Flutter/1.Setup.html">1.Setup</a></li>
+<li><a class="" href="../5-Flutter/2.Widget.html">2.Widget</a></li>
+<li><a class="" href="../5-Flutter/3.Assets.html">3.Assets</a></li>
+</ul>
+<li class="heading"><span>ETC</span></li>
+<ul>
+<li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
+</ul>
+</ul>
+    </nav>
+    <article id="main" class="content">
+        <h1 id="2021-03-02">2021-03-02 <a class="heading-anchor-permalink" href="#2021-03-02">#</a></h1>
+<h6 id="tags%3A-%EC%9C%A0%EC%82%AC%EB%8F%84-xg-boost-bagging">tags: <code>유사도</code> <code>XG Boost</code> <code>Bagging</code> <a class="heading-anchor-permalink" href="#tags%3A-%EC%9C%A0%EC%82%AC%EB%8F%84-xg-boost-bagging">#</a></h6>
+<ul>
+<li>
+<p>중복 문항 체크</p>
+<ul>
+<li>pd Series의 value_counts 함수</li>
+</ul>
+<pre><code class="language-python=">temp_array = pd.Series([1, 1, 1, 2, 3, 4, 5])
+temp_array.value_counts()
+</code></pre>
+<ul>
+<li>result</li>
+</ul>
+<pre><code>1    3
+5    1
+4    1
+3    1
+2    1
+</code></pre>
+</li>
+<li>
+<p>Preprocessing</p>
+<ul>
+<li>Box plot으로 데이터의 분포를 확인</li>
+<li>Bar chart로 라벨 별 데이터 개수가 균등한지 확인
+<ul>
+<li>라벨 별 데이터 균등하게 맞추기</li>
+</ul>
+<pre><code class="language-python=">train_pos_data = train_data.loc[train_data['is_duplicate'] == 1]
+train_neg_data = train_data.loc[train_data['is_duplicate'] == 0]
+
+class_difference = len(train_neg_data) - len(train_pos_data)
+sample_frac = 1 - (class_difference / len(train_neg_data))
+
+train_neg_data = train_neg_data.sample(frac = sample_frac)
+</code></pre>
+</li>
+<li>Character와 Word 단위로 문항을 나눠 그 길이로 box plot과 bar chart를 확인하는 행위는 무엇을 위함인가…?</li>
+<li>데이터의 보편적인 특징(물음표로 끝난다거나 대문자로 시작하는 것)은 데이터 전처리에서 제거하여 편향된 학습을 방지</li>
+</ul>
+</li>
+<li>
+<p>XG Boost (Tree Boosting)</p>
+<ul>
+<li>앙상블이란 여러개의 학습 알고리즘을 사용해 더 좋은 성능을 얻음</li>
+<li>앙상블에는 배깅과 부스팅이 존재
+<ul>
+<li>Bagging: 여러개의 학습 알고리즘, 모델을 통해 각각 결과를 예측 후 모든 결과를 동등하게 취합하여 최종 결과를 얻음
+ex: Random Forest</li>
+<li>Boosting: 여러개의 학습 알고리즘, 모델의 결과를 순차적으로 취합, 잘못 예측한 부분에 가중치를 주어 재학습 진행</li>
+</ul>
+</li>
+<li>여러개의 의사결정 트리를 사용하되 결과들의 평균을 사용하는게 아니라 오답에 대한 가중치를 주어 재학습 진행</li>
+</ul>
+<pre><code class="language-python=">train_data = xgb.DMatrix(train_input.sum(axis=1), label=train_label) # 학습 데이터 읽어 오기
+eval_data = xgb.DMatrix(eval_input.sum(axis=1), label=eval_label) # 평가 데이터 읽어 오기
+
+data_list = [(train_data, 'train'), (eval_data, 'valid')]
+
+params = {} # 인자를 통해 XGB모델에 넣어 주자 
+params['objective'] = 'binary:logistic' # 로지스틱 예측을 통해서 
+params['eval_metric'] = 'rmse' # root mean square error를 사용  
+
+bst = xgb.train(params, train_data, num_boost_round = 1000, evals = data_list, early_stopping_rounds=10)
+</code></pre>
+<ul>
+<li>Bagging은 Train Data Set을 n개로 나누어 n개의 트리(모델)에 각각 학습을 시킨 후
+Evaluate Data Set으로 n개의 모델을 평가하는데 그 중 가장 평가 결과가 우수한 트리(모델)의 결과를 최종 결과로 사용</li>
+<li>XG Boosting은 Train Data Set을 n개의 트리(모델)에 학습 시킨 후
+Evaluate Data Set으로 n개의 모델을 평가하는데 평가 과정 중 오답인 데이터를 Train Data Set에 포함되도록 중요도를 조절하여 다음 학습 차례 때 해당 오답처리 되었던 데이터에 대해 정답이 될 수 있도록 학습을 진행</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+</div>
+<script>
+    // Load contents.json if you need it
+</script>
+<script>
+    // FROM http://purecss.io/js/ui.js
+    (function(window, document) {
+        var layout = document.getElementById("layout"),
+            menu = document.getElementById("menu"),
+            menuLink = document.getElementById("menuLink");
+
+        function toggleClass(element, className) {
+            var classes = element.className.split(/\s+/),
+                length = classes.length,
+                i = 0;
+
+            for (; i < length; i++) {
+                if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                }
+            }
+            // The className is not found
+            if (length === classes.length) {
+                classes.push(className);
+            }
+
+            element.className = classes.join(" ");
+        }
+
+        menuLink.onclick = function(e) {
+            var active = "active";
+
+            e.preventDefault();
+            toggleClass(layout, active);
+            toggleClass(menu, active);
+            toggleClass(menuLink, active);
+        };
+    })(this, this.document);
+</script>
+</body>
+</html>
