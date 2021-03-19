@@ -18,5 +18,18 @@ Free Cloud Storage
         - Google Firestore
           ![](https://i.imgur.com/qif8uds.png)
           1기가의 적은 스토리지만 무료로 제공되며 읽기/쓰기에 대한 일일 무료 할당량이 존재한다.
-- Conclustion
-    - 개발 서버 및 사용량이 적은 환경이면 Firestore가 적합하며 스토리지가 25기가 정도 필요하다 싶으면 AWS를 그것을 초과하면 Azure를 사용하면 될것 같다.
+- 저렴한 File Storage 비교
+    - Azure Blob Storage vs AWS S3 vs Google 
+        - Azure Blob Storage
+          ![](https://i.imgur.com/mzJe3fE.png)
+          ![](https://i.imgur.com/fKefyLo.png)
+        - AWS S3
+          ![](https://i.imgur.com/VrElTuB.png)
+          ![](https://i.imgur.com/C7lgVqU.png)
+        - Google Cloud Storage
+          ![](https://i.imgur.com/TKaZDeF.png)
+      
+
+- Conclusion
+    - DB: 개발 서버 및 사용량이 적은 환경이면 Firestore가 적합하며 스토리지가 25기가 정도 필요하다 싶으면 AWS를 그것을 초과하면 Azure를 사용하면 될것 같다.
+    - File Storage: 금액은 대동소이하다. Google은 무료사용 용량을 제공하지만 다른 storage보다 조금 비싸며 Azure와 AWS중에는 Azure가 조금 더 저렴하다.
