@@ -25,6 +25,33 @@ Chapter 2. Widget
     - Stateful Widget:
         - 계속 움직이며 변화가 생길 수 있는 동적인 위젯 
         - setState함수를 이용하여 stateful 컴포넌트에 존재하는 state 변수를 수정하고 rerender 진행
+        ```java
+        class HomePage extends StatefulWidget {
+          _HomePageState createState() => new _HomePageState();
+        }
+        class _HomePageState extends State<HomePage> {
+          @override
+          void initState() {
+            super.initState();
+          }
+
+          @override
+          Widget build(context) {
+            return Center(
+            );
+          }
+        }
+        ```
     - Stateless Widget:
         - 변화가 없는 정적인 위젯
         - 순수 UI 목적을 가진 컴포넌트로 변동하는 state를 내포할 수 없음
+        ```java
+        class UserPage extends StatelessWidget {
+          @override
+          Widget build(context) {
+            return Center(
+            );
+          }
+        }
+        ```
+        
