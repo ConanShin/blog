@@ -479,14 +479,14 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="1-Convolution.html">Convolution</a></li>
-<li><a class="" href="2-Embedding.html">Embedding</a></li>
-<li><a class="" href="3-Preprocessing.html">Preprocessing</a></li>
-<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
-<li><a class="active" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
-<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
-<li><a class="" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
-<li><a class="" href="8-Chatbot.html">Chatbot</a></li>
+<li><a class="" href="../1-Machine Learning/1-Convolution.html">Convolution</a></li>
+<li><a class="" href="../1-Machine Learning/2-Embedding.html">Embedding</a></li>
+<li><a class="" href="../1-Machine Learning/3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="../1-Machine Learning/4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="../1-Machine Learning/5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="../1-Machine Learning/6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="../1-Machine Learning/7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="../1-Machine Learning/8-Chatbot.html">Chatbot</a></li>
 </ul>
 <li class="heading"><span>WebRTC</span></li>
 <ul>
@@ -512,40 +512,70 @@
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
-<li><a class="" href="../99-ETC/CloudStorage.html">CloudStorage</a></li>
-<li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
-<li><a class="" href="../99-ETC/MQvsKafka.html">MQvsKafka</a></li>
+<li><a class="active" href="CloudStorage.html">CloudStorage</a></li>
+<li><a class="" href="GithubPage.html">GithubPage</a></li>
+<li><a class="" href="MQvsKafka.html">MQvsKafka</a></li>
 </ul>
 </ul>
     </nav>
     <article id="main" class="content">
-        <h1 id="2021-02-16">2021-02-16 <a class="heading-anchor-permalink" href="#2021-02-16">#</a></h1>
-<h6 id="tags%3A-rnn-lstm-cnn">tags: <code>RNN</code> <code>LSTM</code> <code>CNN</code> <a class="heading-anchor-permalink" href="#tags%3A-rnn-lstm-cnn">#</a></h6>
-<p><a href="https://mingrammer.com/understanding-the-asterisk-of-python/">https://mingrammer.com/understanding-the-asterisk-of-python/</a></p>
-<p>LSTM의 output은 hidden state과 같은거?
-RNN의 output은 hidden state과 다른거?</p>
-<h3 id="rnn">RNN <a class="heading-anchor-permalink" href="#rnn">#</a></h3>
-<p><img src="https://i.imgur.com/go68Xut.png" alt="">
-<strong>노드 =  메모리 셀 = RNN 셀</strong> :  은닉층에서 활성화 함수를 통해 결과를 내보내는 역할을 하는 노드
-바로 이전 시점에서의 은닉층의 메모리 셀에서 나온 값을 자신의 입력으로 사용
-<strong>은닉 상태(hidden state)</strong> : 메모리 셀이 출력층 방향으로 또는 다음 시점 t+1의 자신에게 보내는 값</p>
-<p>![](<a href="https://i.imgur.com/Gn6inQ6.png">https://i.imgur.com/Gn6inQ6.png</a> =200x)</p>
-<p><strong>Wx</strong> : 입력층에서 입력값을 위한 가중치
-<strong>Wh</strong>  : 이전 시점 t-1의 은닉 상태값인 ht−1을 위한 가중치
-은닉층 : ht=tanh(Wxxt+Whht−1+b)
-출력층 : yt=f(Wyht+b)</p>
-<p><img src="https://i.imgur.com/FTwMYxE.png" alt=""></p>
-<p><strong>각각의 가중치 Wx, Wh, Wy의 값은 모든 시점에서 값을 동일하게 공유</strong></p>
-<p>출처 : <a href="https://wikidocs.net/22886">https://wikidocs.net/22886</a></p>
-<h3 id="lstm-vs-rnn">LSTM vs RNN <a class="heading-anchor-permalink" href="#lstm-vs-rnn">#</a></h3>
-<p>RNN은 초기에 들어온 information이 문장이 길어질수록 vanish되는 현상이 있다.
-LSTM은 Cell state 사용하여 위 현상을 막아준다.</p>
-<p>hidden state값을 그대로 output으로 사용할 수도 있지만 hidden에 별도 공식을 추가하여 output으로 사용을 할 수도 있다.</p>
-<h3 id="cnn">CNN <a class="heading-anchor-permalink" href="#cnn">#</a></h3>
-<p>Yoon Kim(2014) <a href="http://emnlp2014.org/papers/pdf/EMNLP2014181.pdf">http://emnlp2014.org/papers/pdf/EMNLP2014181.pdf</a></p>
+        <h1 id="free-cloud-storage">Free Cloud Storage <a class="heading-anchor-permalink" href="#free-cloud-storage">#</a></h1>
 <ul>
-<li>CNN 레이어 1개만 사용해도 괜찮은 성능을 보여줌</li>
-<li>모델 모형 참조</li>
+<li>
+<p>저렴한 DB 비교</p>
+<ul>
+<li>Constraints
+<ul>
+<li>Azure, AWS, Google의 Free tier는 제외했다. (필자는 1년 무료 기간이 전부 만료된 상태)</li>
+<li>서울 혹은 아시아 리전 기준이다.</li>
+<li>가장 저렴한것을 기준으로 별도 백업과 같은 서비스 제공은 고려하지 않았다.</li>
+</ul>
+</li>
+<li>Azure SQL DB vs AWS Dynamo DB vs Google Firestore
+<ul>
+<li>
+<p>Azure SQL DB
+<img src="https://i.imgur.com/xT4pmXd.png" alt="">
+별도 무료 스토리지 제공은 없지만 1기가당 가격이 저렴하며 읽기/쓰기 요청에 대한 요금이 없다.</p>
+</li>
+<li>
+<p>AWS Dynamo DB
+<img src="https://i.imgur.com/j0wWA8N.png" alt="">
+25기가까지 스토리지 비용이 무료이지만 읽기/쓰기 요청에 대한 과금이 있다.</p>
+</li>
+<li>
+<p>Google Firestore
+<img src="https://i.imgur.com/qif8uds.png" alt="">
+1기가의 적은 스토리지만 무료로 제공되며 읽기/쓰기에 대한 일일 무료 할당량이 존재한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>저렴한 File Storage 비교</p>
+<ul>
+<li>Azure Blob Storage vs AWS S3 vs Google
+<ul>
+<li>Azure Blob Storage
+<img src="https://i.imgur.com/mzJe3fE.png" alt="">
+<img src="https://i.imgur.com/fKefyLo.png" alt=""></li>
+<li>AWS S3
+<img src="https://i.imgur.com/VrElTuB.png" alt="">
+<img src="https://i.imgur.com/C7lgVqU.png" alt=""></li>
+<li>Google Cloud Storage
+<img src="https://i.imgur.com/TKaZDeF.png" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Conclusion</p>
+<ul>
+<li>DB: 개발 서버 및 사용량이 적은 환경이면 Firestore가 적합하며 스토리지가 25기가 정도 필요하다 싶으면 AWS를 그것을 초과하면 Azure를 사용하면 될것 같다.</li>
+<li>File Storage: 금액은 대동소이하다. Google은 무료사용 용량을 제공하지만 다른 storage보다 조금 비싸며 Azure와 AWS중에는 Azure가 조금 더 저렴하다.</li>
+</ul>
+</li>
 </ul>
 
     </article>

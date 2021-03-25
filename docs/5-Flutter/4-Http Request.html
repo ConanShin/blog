@@ -479,14 +479,14 @@
 <li><a class="" href="../index.html">index</a></li>
 <li class="heading"><span>Machine Learning</span></li>
 <ul>
-<li><a class="" href="1-Convolution.html">Convolution</a></li>
-<li><a class="" href="2-Embedding.html">Embedding</a></li>
-<li><a class="" href="3-Preprocessing.html">Preprocessing</a></li>
-<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
-<li><a class="active" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
-<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
-<li><a class="" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
-<li><a class="" href="8-Chatbot.html">Chatbot</a></li>
+<li><a class="" href="../1-Machine Learning/1-Convolution.html">Convolution</a></li>
+<li><a class="" href="../1-Machine Learning/2-Embedding.html">Embedding</a></li>
+<li><a class="" href="../1-Machine Learning/3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="../1-Machine Learning/4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="../1-Machine Learning/5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="../1-Machine Learning/6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="../1-Machine Learning/7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="../1-Machine Learning/8-Chatbot.html">Chatbot</a></li>
 </ul>
 <li class="heading"><span>WebRTC</span></li>
 <ul>
@@ -505,10 +505,10 @@
 </ul>
 <li class="heading"><span>Flutter</span></li>
 <ul>
-<li><a class="" href="../5-Flutter/1-Setup.html">Setup</a></li>
-<li><a class="" href="../5-Flutter/2-Widget.html">Widget</a></li>
-<li><a class="" href="../5-Flutter/3-Assets.html">Assets</a></li>
-<li><a class="" href="../5-Flutter/4-Http Request.html">Http Request</a></li>
+<li><a class="" href="1-Setup.html">Setup</a></li>
+<li><a class="" href="2-Widget.html">Widget</a></li>
+<li><a class="" href="3-Assets.html">Assets</a></li>
+<li><a class="active" href="4-Http Request.html">Http Request</a></li>
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
@@ -519,33 +519,100 @@
 </ul>
     </nav>
     <article id="main" class="content">
-        <h1 id="2021-02-16">2021-02-16 <a class="heading-anchor-permalink" href="#2021-02-16">#</a></h1>
-<h6 id="tags%3A-rnn-lstm-cnn">tags: <code>RNN</code> <code>LSTM</code> <code>CNN</code> <a class="heading-anchor-permalink" href="#tags%3A-rnn-lstm-cnn">#</a></h6>
-<p><a href="https://mingrammer.com/understanding-the-asterisk-of-python/">https://mingrammer.com/understanding-the-asterisk-of-python/</a></p>
-<p>LSTM의 output은 hidden state과 같은거?
-RNN의 output은 hidden state과 다른거?</p>
-<h3 id="rnn">RNN <a class="heading-anchor-permalink" href="#rnn">#</a></h3>
-<p><img src="https://i.imgur.com/go68Xut.png" alt="">
-<strong>노드 =  메모리 셀 = RNN 셀</strong> :  은닉층에서 활성화 함수를 통해 결과를 내보내는 역할을 하는 노드
-바로 이전 시점에서의 은닉층의 메모리 셀에서 나온 값을 자신의 입력으로 사용
-<strong>은닉 상태(hidden state)</strong> : 메모리 셀이 출력층 방향으로 또는 다음 시점 t+1의 자신에게 보내는 값</p>
-<p>![](<a href="https://i.imgur.com/Gn6inQ6.png">https://i.imgur.com/Gn6inQ6.png</a> =200x)</p>
-<p><strong>Wx</strong> : 입력층에서 입력값을 위한 가중치
-<strong>Wh</strong>  : 이전 시점 t-1의 은닉 상태값인 ht−1을 위한 가중치
-은닉층 : ht=tanh(Wxxt+Whht−1+b)
-출력층 : yt=f(Wyht+b)</p>
-<p><img src="https://i.imgur.com/FTwMYxE.png" alt=""></p>
-<p><strong>각각의 가중치 Wx, Wh, Wy의 값은 모든 시점에서 값을 동일하게 공유</strong></p>
-<p>출처 : <a href="https://wikidocs.net/22886">https://wikidocs.net/22886</a></p>
-<h3 id="lstm-vs-rnn">LSTM vs RNN <a class="heading-anchor-permalink" href="#lstm-vs-rnn">#</a></h3>
-<p>RNN은 초기에 들어온 information이 문장이 길어질수록 vanish되는 현상이 있다.
-LSTM은 Cell state 사용하여 위 현상을 막아준다.</p>
-<p>hidden state값을 그대로 output으로 사용할 수도 있지만 hidden에 별도 공식을 추가하여 output으로 사용을 할 수도 있다.</p>
-<h3 id="cnn">CNN <a class="heading-anchor-permalink" href="#cnn">#</a></h3>
-<p>Yoon Kim(2014) <a href="http://emnlp2014.org/papers/pdf/EMNLP2014181.pdf">http://emnlp2014.org/papers/pdf/EMNLP2014181.pdf</a></p>
+        <h1 id="http-requester">Http Requester <a class="heading-anchor-permalink" href="#http-requester">#</a></h1>
+<h6 id="tags%3A-flutter">tags: <code>flutter</code> <a class="heading-anchor-permalink" href="#tags%3A-flutter">#</a></h6>
 <ul>
-<li>CNN 레이어 1개만 사용해도 괜찮은 성능을 보여줌</li>
-<li>모델 모형 참조</li>
+<li>
+<p>Dependency</p>
+<pre><code class="language-yaml">dependencies:
+    http: ^0.13.1 # latest version
+</code></pre>
+</li>
+<li>
+<p>Data Object</p>
+<pre><code class="language-java">class Post {
+  final int userId;
+  final int id;
+  final String title;
+  final String body;
+
+  Post({this.userId, this.id, this.title, this.body});
+
+  factory Post.fromJson(Map&lt;String, dynamic&gt; json) {
+    return Post(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>Http Requester &amp; DTO transform</p>
+<pre><code class="language-java">import 'package:has_admin/auxilary/post.dto.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class PostRequester {
+  Future&lt;List&lt;Post&gt;&gt; fetchPost() async {
+    http.Response response = await http.get(
+        Uri.parse('https://jsonplaceholder.typicode.com/posts'),
+        headers: {&quot;Accept&quot;: &quot;application/json&quot;});
+    if (response.statusCode == 200) {
+      return json.decode(response.body).map&lt;Post&gt;((post) =&gt; Post.fromJson(post)).toList();
+    } else {
+      throw Exception('Failed to load post');
+    }
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>Widget</p>
+<pre><code class="language-java">class _HomePageState extends State&lt;HomePage&gt; {
+  String get title =&gt; 'Home Page';
+  Future&lt;List&lt;Post&gt;&gt; posts;
+  PostRequester requester = new PostRequester();
+
+  @override
+  void initState() {
+    super.initState();
+    posts = requester.fetchPost();
+  }
+
+  @override
+  Widget build(context) {
+    return Center(
+      child: FutureBuilder&lt;List&lt;Post&gt;&gt;(
+        future: posts,
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) {
+              Post post = snapshot.data[index];
+              return Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Text(post.title)
+                  ),
+                  Expanded(
+                    flex: 7,
+                    child: Text(post.body)
+                  )
+                ],
+              );
+            },
+          );
+        }
+      )
+    );
+  }
+}
+</code></pre>
+</li>
 </ul>
 
     </article>

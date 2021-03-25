@@ -508,10 +508,13 @@
 <li><a class="" href="1-Setup.html">Setup</a></li>
 <li><a class="active" href="2-Widget.html">Widget</a></li>
 <li><a class="" href="3-Assets.html">Assets</a></li>
+<li><a class="" href="4-Http Request.html">Http Request</a></li>
 </ul>
 <li class="heading"><span>ETC</span></li>
 <ul>
+<li><a class="" href="../99-ETC/CloudStorage.html">CloudStorage</a></li>
 <li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
+<li><a class="" href="../99-ETC/MQvsKafka.html">MQvsKafka</a></li>
 </ul>
 </ul>
     </nav>
@@ -559,12 +562,36 @@
 <li>계속 움직이며 변화가 생길 수 있는 동적인 위젯</li>
 <li>setState함수를 이용하여 stateful 컴포넌트에 존재하는 state 변수를 수정하고 rerender 진행</li>
 </ul>
+<pre><code class="language-java">class HomePage extends StatefulWidget {
+  _HomePageState createState() =&gt; new _HomePageState();
+}
+class _HomePageState extends State&lt;HomePage&gt; {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(context) {
+    return Center(
+    );
+  }
+}
+</code></pre>
 </li>
 <li>Stateless Widget:
 <ul>
 <li>변화가 없는 정적인 위젯</li>
 <li>순수 UI 목적을 가진 컴포넌트로 변동하는 state를 내포할 수 없음</li>
 </ul>
+<pre><code class="language-java">class UserPage extends StatelessWidget {
+  @override
+  Widget build(context) {
+    return Center(
+    );
+  }
+}
+</code></pre>
 </li>
 </ul>
 </li>
