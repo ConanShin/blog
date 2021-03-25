@@ -5,6 +5,7 @@ Full stack software engineer
 클라우드 기반(AWS / GCP / Azure) 서비스 운영
 Spring Boot, Node.js 백엔드 개발
 Vue.js, React.js, Flutter 프론트 개발
+Jenkins CI/CD
 ```
 
 ###Projects
