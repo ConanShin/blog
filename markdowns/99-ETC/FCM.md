@@ -45,16 +45,20 @@ Firebase Cloud Messaging
     - APN Key를 Firebase에 업로드
         위에서 다운받은 .p8파일 업로드시 ID는 파일명에 명시되어 있음
         - ![](https://i.imgur.com/LQRRk6y.png)
-5. Project setup(iOS는 skip)
-    - Android 레벨에 build.gradle에 dependency 추가
-    ```java
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.5' // <-- 이 부분
-    }
-    ```
-    - Application 레벨에 build.gradle에 plugin 추가
-    ```java
-    apply plugin: 'com.google.gms.google-services'
-    ```
+5. Project setup
+    - Android
+        - Android 레벨에 build.gradle에 dependency 추가
+        ```java
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.5.0'
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+            classpath 'com.google.gms:google-services:4.3.5' // <-- 이 부분
+        }
+        ```
+        - Application 레벨에 build.gradle에 plugin 추가
+        ```java
+        apply plugin: 'com.google.gms.google-services'
+        ```
+    - iOS
+        - xcode에서 permission 추가
+        ![](https://i.imgur.com/pjzTnF6.png)
