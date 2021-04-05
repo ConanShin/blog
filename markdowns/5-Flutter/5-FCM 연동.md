@@ -1,5 +1,6 @@
 FCM 연동
 ===
+###### tags: `Flutter`
 
 - Firebase Setup
   https://conanshin.github.io/blog/99-ETC/FCM.html
@@ -8,6 +9,14 @@ FCM 연동
     ```yml
     firebase_messaging: ^7.0.3
     firebase_core: ^0.5.0+1
+    ```
+    - AndroidManifest.xml
+    ```
+    <application>
+        <intent-filter>
+            <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
     ```
     - main.dart
     ```dart=
@@ -63,6 +72,9 @@ FCM 연동
       }
     }
     ```
+    - xcode에서 permission 추가
+    ![](https://i.imgur.com/pjzTnF6.png)
+
 - Token firebase에 등록
     - 앱 실행시키면 terminal에 token이 표시됨
       ![](https://i.imgur.com/nmtBkvM.png)
