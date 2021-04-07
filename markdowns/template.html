@@ -103,12 +103,13 @@
             border: 1px dashed lightgreen;
             color: inherit;
             border-radius: 2px;
-            width: fit-content;
         }
 
         pre code {
             border: none;
             box-shadow: none;
+            width: -webkit-fill-available;
+            line-break: anywhere;
         }
 
         pre {
@@ -354,9 +355,6 @@
         @media (max-width: 48em) {
             #layout.active {
                 position: relative;
-            }
-            .content {
-                width: 500px;
             }
             .content ul {
                 padding-inline-start: 10px;
