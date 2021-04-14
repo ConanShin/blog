@@ -76,3 +76,11 @@ return new Scaffold(
 위 처럼 Builder위젯을 선언해 주면 context를 받을 수 있는데
 해당 context를 기점으로 Scaffold.of(context)를 호출 하면 가장 가까운 부모 중 Scaffold가 존재하기 때문에
 정상적으로 해당 Scaffold에 snackbar를 띄워줄 수 있게된다.
+
+### BuildContext class 내부
+- debugDoingBuild: 위젯이 변경사항이 update되고 있는지 확인할 수 있는 boolean
+- hashCode: 현재 build context 오브젝트의 고유 hash
+- owner: 위젯의 구조 변경을 담당
+- runtimeType: 런타임에서 해당 오브젝트가 어떤 primitive 타입을 가지고 있는지 식별
+- size: 렌더링된 위젯의 사이즈
+- widget: 해당 build context의 위젯
