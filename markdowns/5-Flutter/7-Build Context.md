@@ -17,9 +17,12 @@ context는 자신이 속해있는 트리구조에서 가장 가까운 부모의 
 반대로 만약 Global Navigation메뉴의 context를 인자로 넘겨 준다면 가장 최상단에 위치한
 부모의 context를 이용해 global navigation 이동도 가능하니 알아두자.
 :::warning
-위 내용을 main_view의 build context를 office_view > meeting_view에 넘겨주고 테스트 해보았다.
-office_view에서 받은 context로 navigator pop했을때는 정상적으로 meeting_view에서 office_view로 이동했고,
-main_view의 context로 pop했을 때는 meeting_view에서 검은 화면(정상적으로 main_view가 pop됨)으로 이동됬다.
+<img src="https://i.imgur.com/bWOE3et.png" width="300px"/> \
+meeting_view의 context로 navigator pop했을때는 가장 가까운 nav_b를 사용하게 되니
+정상적으로 meeting_view에서 office_view로 이동했고,
+main_view의 build context를 meeting_view에 넘겨주어 main_view의 context로
+pop했을 때는 nav_a(가장 가까운 navigator)를 사용하게 되니
+meeting_view에서 검은 화면(정상적으로 main_view가 pop됨)으로 이동됬다.
 :::
 
 ### .of(context) 함수
