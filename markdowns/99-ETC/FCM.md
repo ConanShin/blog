@@ -60,5 +60,5 @@ Firebase Cloud Messaging
         apply plugin: 'com.google.gms.google-services'
         ```
     - iOS
-        - xcode에서 permission 추가
+        - xcode에서 Background Modes와 Push Notification permission 추가
         ![](https://i.imgur.com/pjzTnF6.png)
