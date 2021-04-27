@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&family=Roboto:wght@100&display=swap');
+        html {
+            background-color: black;
+            color: #9b9b9b;
+            letter-spacing: 2px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-rendering: optimizeLegibility;
+            line-height: 1;
+            margin-top: 0;
+            color: inherit;
+        }
+
+        blockquote + figcaption cite {
+            display: block;
+            font-size: inherit;
+            text-align: right;
+        }
+
+        body {word-wrap: break-word;}
+        pre code {word-wrap: normal;}
+
+        body {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            color: inherit;
+        }
+
+        h1 {font-size: 2em;}
+        h2 {font-size: 1.5em;}
+        h3 {font-size: 1.17em;}
+        h4 {font-size: 1em;}
+        h5 {font-size: 0.83em;}
+        h6 {font-size: 0.75em;}
+
+        h1 {margin: 2.42424rem 0 1.454544rem;}
+        h2 {margin: 2.0202rem 0 1.21212rem;}
+        h3 {margin: 1.61616rem 0 1rem;}
+        h4 {margin: 1.21212rem 0 1rem;}
+        h5 {margin: 0.80808rem 0;}
+        h6 {margin: 0.70707rem 0;}
+        p {margin: auto auto 1.5rem;}
+        small {font-size: 65%;}
+
+        input,
+        abbr,
+        acronym,
+        blockquote,
+        code,
+        kbd,
+        q,
+        samp,
+        var {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+        pre {white-space: pre;}
+        pre code {
+            white-space: -moz-pre-wrap;
+            white-space: pre-wrap;
+        }
+
+        code {
+            white-space: pre;
+        }
+
+        abbr {
+            -webkit-font-variant: small-caps;
+            -moz-font-variant: small-caps;
+            -ms-font-variant: small-caps;
+            font-variant: small-caps;
+            font-weight: 600;
+            text-transform: lowercase;
+            color: inherit;
+        }
+
+        abbr[title]:hover {
+            cursor: help;
+        }
+
+        /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+        body {
+            color: inherit;
+        }
+
+        img {
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 5px 0;
+        }
+
+        code,
+        pre {
+            border: 1px dashed lightgreen;
+            color: inherit;
+            border-radius: 2px;
+        }
+
+        pre code {
+            border: none;
+            box-shadow: none;
+            width: -webkit-fill-available;
+            line-break: anywhere;
+        }
+
+        pre {
+            padding: 0.5em;
+        }
+
+        code {
+            display: inline-block;
+            padding: 0 0.5em;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        table {
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        table th,
+        table td {
+            padding: 0.3em 0.7em;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #444;
+        }
+
+        table td {
+            border: 1px solid #f5f5f5;
+        }
+
+        /* Add transition to containers so they can push in and out. */
+
+        #layout,
+        #menu,
+        .menu-link {
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -ms-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        /* This is the parent `<div>` that contains the menu and the content area. */
+
+        #layout {
+            position: relative;
+            padding-left: 0;
+        }
+
+        #layout.active #menu {
+            left: 250px;
+            width: 250px;
+        }
+
+        #layout.active .menu-link {
+            left: 250px;
+        }
+
+        /* The content `<div>` is where all your content goes. */
+
+        .content {
+            font-size: 12px;
+            padding: 0 2em;
+            line-height: 1.6em;
+        }
+
+        /*
+        The `#menu` `<div>` is the parent `<div>` that contains the menu that
+        appears on the left side of the page.
+        */
+
+        #menu {
+            margin-left: -250px;
+            /* "#menu" width */
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #000000b8;
+            z-index: 1000;
+            /* so the menu or its navicon stays above all content */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: 12px;
+        }
+
+        @media print {
+            #menu,
+            .menu-link {
+                display: none !important;
+            }
+        }
+
+        a,
+        a * {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        /* All anchors inside the menu should be styled like this. */
+
+        #menu a {
+            display: block;
+            padding: 0.5em 0.5em;
+            color: lightgreen;
+        }
+
+        #menu a:first-letter {
+            text-transform: capitalize;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1em 0.5em;
+        }
+
+        #menu ul ul {
+            margin-top: 0.5em;
+            margin-left: 0.5em;
+            border-left: 1px solid lightgreen;
+        }
+
+        /* Change color of the anchor links on hover/focus. */
+
+        #menu li a:hover,
+        #menu li a:focus {
+            background: #00640061;
+        }
+
+        /* This styles the selected menu item `<li>`. */
+
+        #menu li a.active {
+            background: #00640061;
+        }
+
+        /* This styles the menu heading. */
+
+        #menu li.heading {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: inherit;
+        }
+
+        #menu li.heading > * {
+            padding: 0.5em;
+            display: block;
+        }
+
+        #menu li.heading a {
+            color: #0c68af;
+        }
+
+        /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+        /*
+        `.menu-link` represents the responsive menu toggle that shows/hides on
+        small screens.
+        */
+
+        .menu-link {
+            position: fixed;
+            display: block;
+            /* show this only on small screens */
+            top: 0;
+            left: 0;
+            /* "#menu width" */
+            font-size: 10px;
+            /* change this value to increase/decrease button size */
+            z-index: 10;
+            width: 2em;
+            height: auto;
+            padding: 1.6em 1.2em;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .menu-link:hover {
+            background: #f4f4f4;
+        }
+
+        .menu-link span {
+            position: relative;
+            display: block;
+        }
+
+        .menu-link span,
+        .menu-link span:before,
+        .menu-link span:after {
+            background-color: #555;
+            width: 100%;
+            height: 0.2em;
+            border-radius: 1em;
+        }
+
+        .menu-link span:before,
+        .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+
+        /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+        @media (min-width: 48em) {
+            .header,
+            .content {
+                padding-left: 2em;
+                padding-right: 2em;
+            }
+
+            #layout {
+                padding-left: 250px;
+                /* left col width "#menu" */
+                left: 0;
+            }
+            #menu {
+                left: 250px;
+            }
+
+            .menu-link {
+                position: fixed;
+                left: 250px;
+                display: none;
+            }
+
+            #layout.active .menu-link {
+                left: 250px;
+            }
+        }
+
+        @media (max-width: 48em) {
+            #layout.active {
+                position: relative;
+            }
+            .content ul {
+                padding-inline-start: 10px;
+            }
+        }
+
+        /* Heading anchors and permalinks */
+        h1[id],
+        h2[id],
+        h3[id],
+        h4[id],
+        h5[id],
+        h6[id] {
+            position: relative;
+        }
+        .heading-anchor-permalink {
+            /* Position the permalink to the left of the title */
+            position: absolute;
+            right: 100%;
+            /* Add some spacing as padding to not lose the hover */
+            padding-right: 0.6rem;
+            /* Make it only visible on heading hover, see below */
+            opacity: 0;
+        }
+        h1[id]:hover .heading-anchor-permalink,
+        h2[id]:hover .heading-anchor-permalink,
+        h3[id]:hover .heading-anchor-permalink,
+        h4[id]:hover .heading-anchor-permalink,
+        h5[id]:hover .heading-anchor-permalink,
+        h6[id]:hover .heading-anchor-permalink {
+            opacity: 0.5;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+</head>
+
+<body>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <nav id="menu">
+        <ul>
+<li><a class="" href="../index.html">index</a></li>
+<li class="heading"><span>Machine Learning</span></li>
+<ul>
+<li><a class="" href="1-Convolution.html">Convolution</a></li>
+<li><a class="" href="2-Embedding.html">Embedding</a></li>
+<li><a class="" href="3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="8-Chatbot.html">Chatbot</a></li>
+<li><a class="active" href="Transformer.html">Transformer</a></li>
+</ul>
+<li class="heading"><span>WebRTC</span></li>
+<ul>
+<li><a class="" href="../2-WebRTC/APIs.html">APIs</a></li>
+<li><a class="" href="../2-WebRTC/Mechanism.html">Mechanism</a></li>
+<li><a class="" href="../2-WebRTC/Signaling.html">Signaling</a></li>
+<li><a class="" href="../2-WebRTC/Zoom API.html">Zoom API</a></li>
+</ul>
+<li class="heading"><span>Azure</span></li>
+<ul>
+<li><a class="" href="../3-Azure/App Service Warmer.html">App Service Warmer</a></li>
+<li><a class="" href="../3-Azure/Deployment.html">Deployment</a></li>
+</ul>
+<li class="heading"><span>Flutter</span></li>
+<ul>
+<li><a class="" href="../5-Flutter/1-Setup.html">Setup</a></li>
+<li><a class="" href="../5-Flutter/2-Widget.html">Widget</a></li>
+<li><a class="" href="../5-Flutter/3-Assets.html">Assets</a></li>
+<li><a class="" href="../5-Flutter/4-Http Request.html">Http Request</a></li>
+<li><a class="" href="../5-Flutter/5-FCM 연동.html">FCM 연동</a></li>
+<li><a class="" href="../5-Flutter/6-Rich Text Editor.html">Rich Text Editor</a></li>
+<li><a class="" href="../5-Flutter/7-Build Context.html">Build Context</a></li>
+<li><a class="" href="../5-Flutter/8-Native Code 연동.html">Native Code 연동</a></li>
+</ul>
+<li class="heading"><span>NestJS</span></li>
+<ul>
+<li><a class="" href="../60-NestJS/Firebase Cloud Messaging.html">Firebase Cloud Messaging</a></li>
+<li><a class="" href="../60-NestJS/MySQL and Typeorm.html">MySQL and Typeorm</a></li>
+<li><a class="" href="../60-NestJS/NestJS and Keycloak.html">NestJS and Keycloak</a></li>
+</ul>
+<li class="heading"><span>ETC</span></li>
+<ul>
+<li><a class="" href="../99-ETC/CloudStorage.html">CloudStorage</a></li>
+<li><a class="" href="../99-ETC/Deploy iOS Application.html">Deploy iOS Application</a></li>
+<li><a class="" href="../99-ETC/FCM.html">FCM</a></li>
+<li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
+<li><a class="" href="../99-ETC/MQvsKafka.html">MQvsKafka</a></li>
+</ul>
+</ul>
+    </nav>
+    <article id="main" class="content">
+        <h1 id="transformer">Transformer <a class="heading-anchor-permalink" href="#transformer">#</a></h1>
+<h6 id="tags%3A-chatbot-transformer-attention">tags: <code>chatbot</code> <code>transformer</code> <code>attention</code> <a class="heading-anchor-permalink" href="#tags%3A-chatbot-transformer-attention">#</a></h6>
+<ul>
+<li>
+<p>Self Attention</p>
+<ul>
+<li>RNN의 특징은 context vector안에 각 단어의 순서 및 위치 정보를 내포할 수 있도록 설계되었기 때문이다.</li>
+<li>RNN에서 ‘I’ ‘Love’ 'You’라는 단어로 ‘난’ ‘널’ '사랑해’를 예측한다고 가정했을 때
+‘I’ ‘Love’ 'You’의 hidden state은 ‘난’ ‘널’ '사랑해’를 순차적으로 받아 새로운 context vector를 생성하게 되는데 여기서 ‘난’ ‘널’ '사랑해’를 순차적으로 받는다는 것에 RNN의 특징에 대한 의미가 있다.
+하지만 순차적인 training은 학습 시간이 길어지는데 큰 영향을 준다.</li>
+<li>Transformer에서 self attention은 input 문장에서 단어들의 context vector를 추출하기 위함인데 ‘월 화 수 목 금’ 과 '시간은 금이다’라는 문장에서 단어 '금’은 동일한 의미를 지니지 않는다.</li>
+<li>하지만 Embedding layer만 가지고 단어를 백터와 한다면 위 두문장에서 '금’은 동일한 벡터로 표현될 것이다. 따라서 우리는 문맥에서의 단어가 가진 의미를 표현할 수 있어야 하는데, 이를 단어의 문맥벡터라하며 self attention을 통해 얻을 수 있다.</li>
+<li>Self Attention은 문장안에서 단어가 문맥상 가지고 있는 정보를 추출할 수 있는데
+단어와 단어의 positional 정보를 더해서 Query Key Value 메카니즘으로 진행된다.
+QKV에서 나온 단어의 문맥벡터는 단어들 간 연관관계 포함하고 여기에 positional 정보를 더했으니 이제 문맥벡터는 단어들 간의 위치정보를 내포한 연관관계를 갖게 된다. 따라서 '월 화 수 목 금’의 ‘금과’ '시간은 금이다’의 '금’은 완전히 다른 벡터로 표현되게 된다.</li>
+</ul>
+</li>
+<li>
+<p>Multi Head attention</p>
+<ul>
+<li>동일한 query, key, value에 각기 다른 weight matrix W를 곱해 여러번 수행하는것</li>
+</ul>
+</li>
+<li>
+<p>Transformer 개요
+<img src="https://miro.medium.com/max/990/1*FYsBESLkDO9yNtu0z0mhPw.png" alt=""></p>
+<ul>
+<li>Encoder<pre><code class="language-python=">class Encoder(tf.keras.layers.Layer):
+def __init__(self, **kargs):
+    super(Encoder, self).__init__()
+
+    self.d_model = kargs['d_model']
+    self.num_layers = kargs['num_layers']
+
+    self.embedding = tf.keras.layers.Embedding(kargs['input_vocab_size'], self.d_model)
+    self.pos_encoding = positional_encoding(kargs['maximum_position_encoding'], 
+                                            self.d_model)
+
+
+    self.enc_layers = [EncoderLayer(**kargs) 
+                       for _ in range(self.num_layers)]
+
+    self.dropout = tf.keras.layers.Dropout(kargs['rate'])
+
+def call(self, x, mask):
+
+    seq_len = tf.shape(x)[1]
+
+    # adding embedding and position encoding.
+    x = self.embedding(x)  # (batch_size, input_seq_len, d_model)
+    x *= tf.math.sqrt(tf.cast(self.d_model, tf.float32))
+    x += self.pos_encoding[:, :seq_len, :]
+
+    x = self.dropout(x)
+
+    for i in range(self.num_layers):
+        x = self.enc_layers[i](x, mask)
+
+    return x  # (batch_size, input_seq_len, d_model)
+</code></pre>
+<ol>
+<li>'어떤 과일을 좋아합니까?'를 Input Embedding으로 벡터화</li>
+<li>각 단어에 positional encoding을 더해 위치 정보 추가</li>
+<li>위에서 나온 결과를 QKV로 Multi-Head Attention에 적용</li>
+<li>Multi-Head 에서 나온 결과들을 Normalize하고 Feed</li>
+</ol>
+</li>
+<li>Decoder<pre><code class="language-python=">class Decoder(tf.keras.layers.Layer):
+def __init__(self, **kargs):
+    super(Decoder, self).__init__()
+
+    self.d_model = kargs['d_model']
+    self.num_layers = kargs['num_layers']
+
+    self.embedding = tf.keras.layers.Embedding(kargs['target_vocab_size'], self.d_model)
+    self.pos_encoding = positional_encoding(kargs['maximum_position_encoding'], self.d_model)
+
+    self.dec_layers = [DecoderLayer(**kargs) 
+                       for _ in range(self.num_layers)]
+    self.dropout = tf.keras.layers.Dropout(kargs['rate'])
+
+def call(self, x, enc_output, look_ahead_mask, padding_mask):
+    seq_len = tf.shape(x)[1]
+    attention_weights = {}
+
+    x = self.embedding(x)  # (batch_size, target_seq_len, d_model)
+    x *= tf.math.sqrt(tf.cast(self.d_model, tf.float32))
+    x += self.pos_encoding[:, :seq_len, :]
+
+    x = self.dropout(x)
+
+    for i in range(self.num_layers):
+        x, block1, block2 = self.dec_layers[i](x, enc_output, look_ahead_mask, padding_mask)
+
+        attention_weights['decoder_layer{}_block1'.format(i+1)] = block1
+        attention_weights['decoder_layer{}_block2'.format(i+1)] = block2
+
+    # x.shape == (batch_size, target_seq_len, d_model)
+    return x, attention_weights
+</code></pre>
+<ol>
+<li>'나는 사과를 좋아합니다.'를 Output Embedding으로 벡터화</li>
+<li>각 단어에 positional encoding을 더해 위치 정보 추가</li>
+<li>위에서 나온 결과를 QKV로 Subsequent Masked Attention에 적용
+Masked Attention은 Query입장에서 현재 단어의 위치 기준으로 이후에 나오는 단어 Key정보를 알지 못하도록 처리하는 방식</li>
+<li>Mutl-Head Attention에 QK에는 Encoder의 output을 V에는 Decoder의 output넣는다</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+</div>
+<script>
+    // Load contents.json if you need it
+</script>
+<script>
+    // FROM http://purecss.io/js/ui.js
+    (function(window, document) {
+        var layout = document.getElementById("layout"),
+            menu = document.getElementById("menu"),
+            menuLink = document.getElementById("menuLink");
+
+        function toggleClass(element, className) {
+            var classes = element.className.split(/\s+/),
+                length = classes.length,
+                i = 0;
+
+            for (; i < length; i++) {
+                if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                }
+            }
+            // The className is not found
+            if (length === classes.length) {
+                classes.push(className);
+            }
+
+            element.className = classes.join(" ");
+        }
+
+        menuLink.onclick = function(e) {
+            var active = "active";
+
+            e.preventDefault();
+            toggleClass(layout, active);
+            toggleClass(menu, active);
+            toggleClass(menuLink, active);
+        };
+    })(this, this.document);
+</script>
+</body>
+</html>

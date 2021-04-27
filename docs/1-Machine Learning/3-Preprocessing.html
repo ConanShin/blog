@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&family=Roboto:wght@100&display=swap');
+        html {
+            background-color: black;
+            color: #9b9b9b;
+            letter-spacing: 2px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-rendering: optimizeLegibility;
+            line-height: 1;
+            margin-top: 0;
+            color: inherit;
+        }
+
+        blockquote + figcaption cite {
+            display: block;
+            font-size: inherit;
+            text-align: right;
+        }
+
+        body {word-wrap: break-word;}
+        pre code {word-wrap: normal;}
+
+        body {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            color: inherit;
+        }
+
+        h1 {font-size: 2em;}
+        h2 {font-size: 1.5em;}
+        h3 {font-size: 1.17em;}
+        h4 {font-size: 1em;}
+        h5 {font-size: 0.83em;}
+        h6 {font-size: 0.75em;}
+
+        h1 {margin: 2.42424rem 0 1.454544rem;}
+        h2 {margin: 2.0202rem 0 1.21212rem;}
+        h3 {margin: 1.61616rem 0 1rem;}
+        h4 {margin: 1.21212rem 0 1rem;}
+        h5 {margin: 0.80808rem 0;}
+        h6 {margin: 0.70707rem 0;}
+        p {margin: auto auto 1.5rem;}
+        small {font-size: 65%;}
+
+        input,
+        abbr,
+        acronym,
+        blockquote,
+        code,
+        kbd,
+        q,
+        samp,
+        var {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+        pre {white-space: pre;}
+        pre code {
+            white-space: -moz-pre-wrap;
+            white-space: pre-wrap;
+        }
+
+        code {
+            white-space: pre;
+        }
+
+        abbr {
+            -webkit-font-variant: small-caps;
+            -moz-font-variant: small-caps;
+            -ms-font-variant: small-caps;
+            font-variant: small-caps;
+            font-weight: 600;
+            text-transform: lowercase;
+            color: inherit;
+        }
+
+        abbr[title]:hover {
+            cursor: help;
+        }
+
+        /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+        body {
+            color: inherit;
+        }
+
+        img {
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 5px 0;
+        }
+
+        code,
+        pre {
+            border: 1px dashed lightgreen;
+            color: inherit;
+            border-radius: 2px;
+        }
+
+        pre code {
+            border: none;
+            box-shadow: none;
+            width: -webkit-fill-available;
+            line-break: anywhere;
+        }
+
+        pre {
+            padding: 0.5em;
+        }
+
+        code {
+            display: inline-block;
+            padding: 0 0.5em;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        table {
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        table th,
+        table td {
+            padding: 0.3em 0.7em;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #444;
+        }
+
+        table td {
+            border: 1px solid #f5f5f5;
+        }
+
+        /* Add transition to containers so they can push in and out. */
+
+        #layout,
+        #menu,
+        .menu-link {
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -ms-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        /* This is the parent `<div>` that contains the menu and the content area. */
+
+        #layout {
+            position: relative;
+            padding-left: 0;
+        }
+
+        #layout.active #menu {
+            left: 250px;
+            width: 250px;
+        }
+
+        #layout.active .menu-link {
+            left: 250px;
+        }
+
+        /* The content `<div>` is where all your content goes. */
+
+        .content {
+            font-size: 12px;
+            padding: 0 2em;
+            line-height: 1.6em;
+        }
+
+        /*
+        The `#menu` `<div>` is the parent `<div>` that contains the menu that
+        appears on the left side of the page.
+        */
+
+        #menu {
+            margin-left: -250px;
+            /* "#menu" width */
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #000000b8;
+            z-index: 1000;
+            /* so the menu or its navicon stays above all content */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: 12px;
+        }
+
+        @media print {
+            #menu,
+            .menu-link {
+                display: none !important;
+            }
+        }
+
+        a,
+        a * {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        /* All anchors inside the menu should be styled like this. */
+
+        #menu a {
+            display: block;
+            padding: 0.5em 0.5em;
+            color: lightgreen;
+        }
+
+        #menu a:first-letter {
+            text-transform: capitalize;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1em 0.5em;
+        }
+
+        #menu ul ul {
+            margin-top: 0.5em;
+            margin-left: 0.5em;
+            border-left: 1px solid lightgreen;
+        }
+
+        /* Change color of the anchor links on hover/focus. */
+
+        #menu li a:hover,
+        #menu li a:focus {
+            background: #00640061;
+        }
+
+        /* This styles the selected menu item `<li>`. */
+
+        #menu li a.active {
+            background: #00640061;
+        }
+
+        /* This styles the menu heading. */
+
+        #menu li.heading {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: inherit;
+        }
+
+        #menu li.heading > * {
+            padding: 0.5em;
+            display: block;
+        }
+
+        #menu li.heading a {
+            color: #0c68af;
+        }
+
+        /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+        /*
+        `.menu-link` represents the responsive menu toggle that shows/hides on
+        small screens.
+        */
+
+        .menu-link {
+            position: fixed;
+            display: block;
+            /* show this only on small screens */
+            top: 0;
+            left: 0;
+            /* "#menu width" */
+            font-size: 10px;
+            /* change this value to increase/decrease button size */
+            z-index: 10;
+            width: 2em;
+            height: auto;
+            padding: 1.6em 1.2em;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .menu-link:hover {
+            background: #f4f4f4;
+        }
+
+        .menu-link span {
+            position: relative;
+            display: block;
+        }
+
+        .menu-link span,
+        .menu-link span:before,
+        .menu-link span:after {
+            background-color: #555;
+            width: 100%;
+            height: 0.2em;
+            border-radius: 1em;
+        }
+
+        .menu-link span:before,
+        .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+
+        /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+        @media (min-width: 48em) {
+            .header,
+            .content {
+                padding-left: 2em;
+                padding-right: 2em;
+            }
+
+            #layout {
+                padding-left: 250px;
+                /* left col width "#menu" */
+                left: 0;
+            }
+            #menu {
+                left: 250px;
+            }
+
+            .menu-link {
+                position: fixed;
+                left: 250px;
+                display: none;
+            }
+
+            #layout.active .menu-link {
+                left: 250px;
+            }
+        }
+
+        @media (max-width: 48em) {
+            #layout.active {
+                position: relative;
+            }
+            .content ul {
+                padding-inline-start: 10px;
+            }
+        }
+
+        /* Heading anchors and permalinks */
+        h1[id],
+        h2[id],
+        h3[id],
+        h4[id],
+        h5[id],
+        h6[id] {
+            position: relative;
+        }
+        .heading-anchor-permalink {
+            /* Position the permalink to the left of the title */
+            position: absolute;
+            right: 100%;
+            /* Add some spacing as padding to not lose the hover */
+            padding-right: 0.6rem;
+            /* Make it only visible on heading hover, see below */
+            opacity: 0;
+        }
+        h1[id]:hover .heading-anchor-permalink,
+        h2[id]:hover .heading-anchor-permalink,
+        h3[id]:hover .heading-anchor-permalink,
+        h4[id]:hover .heading-anchor-permalink,
+        h5[id]:hover .heading-anchor-permalink,
+        h6[id]:hover .heading-anchor-permalink {
+            opacity: 0.5;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+</head>
+
+<body>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <nav id="menu">
+        <ul>
+<li><a class="" href="../index.html">index</a></li>
+<li class="heading"><span>Machine Learning</span></li>
+<ul>
+<li><a class="" href="1-Convolution.html">Convolution</a></li>
+<li><a class="" href="2-Embedding.html">Embedding</a></li>
+<li><a class="active" href="3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="8-Chatbot.html">Chatbot</a></li>
+<li><a class="" href="Transformer.html">Transformer</a></li>
+</ul>
+<li class="heading"><span>WebRTC</span></li>
+<ul>
+<li><a class="" href="../2-WebRTC/APIs.html">APIs</a></li>
+<li><a class="" href="../2-WebRTC/Mechanism.html">Mechanism</a></li>
+<li><a class="" href="../2-WebRTC/Signaling.html">Signaling</a></li>
+<li><a class="" href="../2-WebRTC/Zoom API.html">Zoom API</a></li>
+</ul>
+<li class="heading"><span>Azure</span></li>
+<ul>
+<li><a class="" href="../3-Azure/App Service Warmer.html">App Service Warmer</a></li>
+<li><a class="" href="../3-Azure/Deployment.html">Deployment</a></li>
+</ul>
+<li class="heading"><span>Flutter</span></li>
+<ul>
+<li><a class="" href="../5-Flutter/1-Setup.html">Setup</a></li>
+<li><a class="" href="../5-Flutter/2-Widget.html">Widget</a></li>
+<li><a class="" href="../5-Flutter/3-Assets.html">Assets</a></li>
+<li><a class="" href="../5-Flutter/4-Http Request.html">Http Request</a></li>
+<li><a class="" href="../5-Flutter/5-FCM 연동.html">FCM 연동</a></li>
+<li><a class="" href="../5-Flutter/6-Rich Text Editor.html">Rich Text Editor</a></li>
+<li><a class="" href="../5-Flutter/7-Build Context.html">Build Context</a></li>
+<li><a class="" href="../5-Flutter/8-Native Code 연동.html">Native Code 연동</a></li>
+</ul>
+<li class="heading"><span>NestJS</span></li>
+<ul>
+<li><a class="" href="../60-NestJS/Firebase Cloud Messaging.html">Firebase Cloud Messaging</a></li>
+<li><a class="" href="../60-NestJS/MySQL and Typeorm.html">MySQL and Typeorm</a></li>
+<li><a class="" href="../60-NestJS/NestJS and Keycloak.html">NestJS and Keycloak</a></li>
+</ul>
+<li class="heading"><span>ETC</span></li>
+<ul>
+<li><a class="" href="../99-ETC/CloudStorage.html">CloudStorage</a></li>
+<li><a class="" href="../99-ETC/Deploy iOS Application.html">Deploy iOS Application</a></li>
+<li><a class="" href="../99-ETC/FCM.html">FCM</a></li>
+<li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
+<li><a class="" href="../99-ETC/MQvsKafka.html">MQvsKafka</a></li>
+</ul>
+</ul>
+    </nav>
+    <article id="main" class="content">
+        <h1 id="2021-02-04">2021-02-04 <a class="heading-anchor-permalink" href="#2021-02-04">#</a></h1>
+<h6 id="tags%3A-%EC%A0%84%EC%B2%98%EB%A6%AC-preprocessing">tags: <code>전처리</code> <code>preprocessing</code> <a class="heading-anchor-permalink" href="#tags%3A-%EC%A0%84%EC%B2%98%EB%A6%AC-preprocessing">#</a></h6>
+<h4 id="1.-%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0">1. 불용어 제거 <a class="heading-anchor-permalink" href="#1.-%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0">#</a></h4>
+<pre><code class="language-python">def preprocessing( review, remove_stopwords = False ): 
+    # 불용어 제거는 옵션으로 선택 가능하다.
+    
+    # 1. HTML 태그 제거
+    review_text = BeautifulSoup(review, &quot;html5lib&quot;).get_text()	
+
+    # 2. 영어가 아닌 특수문자들을 공백(&quot; &quot;)으로 바꾸기
+    review_text = re.sub(&quot;[^a-zA-Z]&quot;, &quot; &quot;, review_text)
+
+    # 3. 대문자들을 소문자로 바꾸고 공백단위로 텍스트들 나눠서 리스트로 만든다.
+    words = review_text.lower().split()
+
+    if remove_stopwords: 
+        # 4. 불용어들을 제거
+    
+        #영어에 관련된 불용어 불러오기
+        stops = set(stopwords.words(&quot;english&quot;))
+        # 불용어가 아닌 단어들로 이루어진 새로운 리스트 생성
+        words = [w for w in words if not w in stops]
+        # 5. 단어 리스트를 공백을 넣어서 하나의 글로 합친다.	
+        clean_review = ' '.join(words)
+
+    else: # 불용어 제거하지 않을 때
+        clean_review = ' '.join(words)
+
+    return clean_review
+</code></pre>
+<h4 id="2.-%EB%8B%A8%EC%96%B4%EB%A5%BC-%EB%8B%A8%EC%96%B4%EC%82%AC%EC%A0%84%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A1%9C-%EB%B2%A1%ED%84%B0%ED%99%94">2. 단어를 단어사전을 사용해서 인덱스로 벡터화 <a class="heading-anchor-permalink" href="#2.-%EB%8B%A8%EC%96%B4%EB%A5%BC-%EB%8B%A8%EC%96%B4%EC%82%AC%EC%A0%84%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A1%9C-%EB%B2%A1%ED%84%B0%ED%99%94">#</a></h4>
+<pre><code class="language-python">tokenizer = Tokenizer()
+tokenizer.fit_on_texts(clean_train_reviews)
+text_sequences = tokenizer.texts_to_sequences(clean_train_reviews)
+</code></pre>
+<h4 id="3.-%EB%AC%B8%EC%9E%A5-%EA%B8%B8%EC%9D%B4-%EB%8F%99%EA%B8%B0%ED%99%94">3. 문장 길이 동기화 <a class="heading-anchor-permalink" href="#3.-%EB%AC%B8%EC%9E%A5-%EA%B8%B8%EC%9D%B4-%EB%8F%99%EA%B8%B0%ED%99%94">#</a></h4>
+<pre><code class="language-python">word_vocab = tokenizer.word_index
+word_vocab[&quot;&lt;PAD&gt;&quot;] = 0
+
+data_configs = {}
+data_configs['vocab'] = word_vocab
+data_configs['vocab_size'] = len(word_vocab)
+
+MAX_SEQUENCE_LENGTH = 174 
+train_inputs = pad_sequences(text_sequences, maxlen=MAX_SEQUENCE_LENGTH, padding='post')
+</code></pre>
+<ul>
+<li>Median 산출</li>
+<li>중간값에 맞추어 문장 길이 변환</li>
+<li>긴 문장은 후반부 생략</li>
+<li>짧은 문장은 패딩으로 채우기</li>
+</ul>
+<h4 id="4.-%EC%A0%84%EC%B2%98%EB%A6%AC-%ED%9B%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5">4. 전처리 후 데이터 저장 <a class="heading-anchor-permalink" href="#4.-%EC%A0%84%EC%B2%98%EB%A6%AC-%ED%9B%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%80%EC%9E%A5">#</a></h4>
+<h4 id="%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0%ED%95%B4%EC%84%9C-%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8-%EC%B0%8D%EC%96%B4%EB%B3%B4%EA%B8%B0">불용어 제거해서 히스토그램 찍어보기 <a class="heading-anchor-permalink" href="#%EB%B6%88%EC%9A%A9%EC%96%B4-%EC%A0%9C%EA%B1%B0%ED%95%B4%EC%84%9C-%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8-%EC%B0%8D%EC%96%B4%EB%B3%B4%EA%B8%B0">#</a></h4>
+<pre><code class="language-python">word_size = [len(r.split()) for r in clean_train_reviews]
+np.median(word_size)
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(15,10))
+plt.hist(word_size, bins=50, facecolor='r', label='train')
+</code></pre>
+<p><img src="https://i.imgur.com/TIsvbgs.png" alt=""></p>
+<hr>
+<h6 id="tags%3A-%EB%AA%A8%EB%8D%B8%EB%A7%81-modeling">tags: <code>모델링</code> <code>modeling</code> <a class="heading-anchor-permalink" href="#tags%3A-%EB%AA%A8%EB%8D%B8%EB%A7%81-modeling">#</a></h6>
+<p>word index ? tf-idf? 둘 중 뭐써야함?</p>
+<h3 id="tf-idf-vectorizer">Tf-IDF Vectorizer <a class="heading-anchor-permalink" href="#tf-idf-vectorizer">#</a></h3>
+<p>:question: 왜 analyzer = 'char’로 주지…? 왜 'word’로 준거랑 차이가 없지…? SHIIITTT!!</p>
+<h4 id="test">TEST <a class="heading-anchor-permalink" href="#test">#</a></h4>
+<ul>
+<li>analyzer=“char” &amp; ngram_range=(1,2): 0.782800</li>
+<li>analyzer=“char” &amp; ngram_range=(1,3): 0.859800</li>
+<li>analyzer=“char” &amp; ngram_range=(1,7): 0.850800</li>
+<li>analyzer=“word” &amp; ngram_range=(1,2): 0.887600</li>
+</ul>
+<p><code>vectorizer = TfidfVectorizer(min_df = 0.0, analyzer=&quot;char&quot;, sublinear_tf=True, ngram_range=(1,3), max_features=5000)</code></p>
+<p>TfidfVectorizer 파라미터 정리</p>
+<ul>
+<li>min-df : 설정한 값 이상 등장하는 단어만 등록, 단어의 등장횟수가 아니라 문서의 수</li>
+<li>analyzer : 단어 단위로 볼지 문장 단위로 볼지</li>
+<li>ngram_range : 문자 혹은 단어의 묶음을 처리하는 범위, 단어를 기준으로 하고 (1, 1)로 놓았을 경우 벡터라이저와 같은 결과를 보임(단어 하나씩만 처리하기 때문) (1,2)로 놓았을 경우 go, go to 등이 개별 단어로 처리된다. 묶여야 의미가 살아나는 표현들을 처리하기 위한 파리미터</li>
+<li>max_feature : 각 벡터의 최대 길이를 처리</li>
+<li>sublinear_tf : 단어의 빈도 수에 대한 스무딩 여부, 로그값으로 변환해 값을 완만하게 처리</li>
+</ul>
+<pre><code class="language-python">import numpy as np 
+def sublinear_func(input): 
+    result = 1 + np.log(input) 
+    return result
+</code></pre>
+
+    </article>
+</div>
+<script>
+    // Load contents.json if you need it
+</script>
+<script>
+    // FROM http://purecss.io/js/ui.js
+    (function(window, document) {
+        var layout = document.getElementById("layout"),
+            menu = document.getElementById("menu"),
+            menuLink = document.getElementById("menuLink");
+
+        function toggleClass(element, className) {
+            var classes = element.className.split(/\s+/),
+                length = classes.length,
+                i = 0;
+
+            for (; i < length; i++) {
+                if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                }
+            }
+            // The className is not found
+            if (length === classes.length) {
+                classes.push(className);
+            }
+
+            element.className = classes.join(" ");
+        }
+
+        menuLink.onclick = function(e) {
+            var active = "active";
+
+            e.preventDefault();
+            toggleClass(layout, active);
+            toggleClass(menu, active);
+            toggleClass(menuLink, active);
+        };
+    })(this, this.document);
+</script>
+</body>
+</html>

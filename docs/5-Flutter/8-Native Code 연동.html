@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&family=Roboto:wght@100&display=swap');
+        html {
+            background-color: black;
+            color: #9b9b9b;
+            letter-spacing: 2px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-rendering: optimizeLegibility;
+            line-height: 1;
+            margin-top: 0;
+            color: inherit;
+        }
+
+        blockquote + figcaption cite {
+            display: block;
+            font-size: inherit;
+            text-align: right;
+        }
+
+        body {word-wrap: break-word;}
+        pre code {word-wrap: normal;}
+
+        body {
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            color: inherit;
+        }
+
+        h1 {font-size: 2em;}
+        h2 {font-size: 1.5em;}
+        h3 {font-size: 1.17em;}
+        h4 {font-size: 1em;}
+        h5 {font-size: 0.83em;}
+        h6 {font-size: 0.75em;}
+
+        h1 {margin: 2.42424rem 0 1.454544rem;}
+        h2 {margin: 2.0202rem 0 1.21212rem;}
+        h3 {margin: 1.61616rem 0 1rem;}
+        h4 {margin: 1.21212rem 0 1rem;}
+        h5 {margin: 0.80808rem 0;}
+        h6 {margin: 0.70707rem 0;}
+        p {margin: auto auto 1.5rem;}
+        small {font-size: 65%;}
+
+        input,
+        abbr,
+        acronym,
+        blockquote,
+        code,
+        kbd,
+        q,
+        samp,
+        var {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+        pre {white-space: pre;}
+        pre code {
+            white-space: -moz-pre-wrap;
+            white-space: pre-wrap;
+        }
+
+        code {
+            white-space: pre;
+        }
+
+        abbr {
+            -webkit-font-variant: small-caps;
+            -moz-font-variant: small-caps;
+            -ms-font-variant: small-caps;
+            font-variant: small-caps;
+            font-weight: 600;
+            text-transform: lowercase;
+            color: inherit;
+        }
+
+        abbr[title]:hover {
+            cursor: help;
+        }
+
+        /* FROM http://purecss.io/layouts/side-menu/  adapted to remove pure classes*/
+
+        body {
+            color: inherit;
+        }
+
+        img {
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 5px 0;
+        }
+
+        code,
+        pre {
+            border: 1px dashed lightgreen;
+            color: inherit;
+            border-radius: 2px;
+        }
+
+        pre code {
+            border: none;
+            box-shadow: none;
+            width: -webkit-fill-available;
+            line-break: anywhere;
+        }
+
+        pre {
+            padding: 0.5em;
+        }
+
+        code {
+            display: inline-block;
+            padding: 0 0.5em;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        table {
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        table th,
+        table td {
+            padding: 0.3em 0.7em;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #444;
+        }
+
+        table td {
+            border: 1px solid #f5f5f5;
+        }
+
+        /* Add transition to containers so they can push in and out. */
+
+        #layout,
+        #menu,
+        .menu-link {
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -ms-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        /* This is the parent `<div>` that contains the menu and the content area. */
+
+        #layout {
+            position: relative;
+            padding-left: 0;
+        }
+
+        #layout.active #menu {
+            left: 250px;
+            width: 250px;
+        }
+
+        #layout.active .menu-link {
+            left: 250px;
+        }
+
+        /* The content `<div>` is where all your content goes. */
+
+        .content {
+            font-size: 12px;
+            padding: 0 2em;
+            line-height: 1.6em;
+        }
+
+        /*
+        The `#menu` `<div>` is the parent `<div>` that contains the menu that
+        appears on the left side of the page.
+        */
+
+        #menu {
+            margin-left: -250px;
+            /* "#menu" width */
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #000000b8;
+            z-index: 1000;
+            /* so the menu or its navicon stays above all content */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            font-size: 12px;
+        }
+
+        @media print {
+            #menu,
+            .menu-link {
+                display: none !important;
+            }
+        }
+
+        a,
+        a * {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #2483cc;
+        }
+
+        /* All anchors inside the menu should be styled like this. */
+
+        #menu a {
+            display: block;
+            padding: 0.5em 0.5em;
+            color: lightgreen;
+        }
+
+        #menu a:first-letter {
+            text-transform: capitalize;
+        }
+
+        #menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1em 0.5em;
+        }
+
+        #menu ul ul {
+            margin-top: 0.5em;
+            margin-left: 0.5em;
+            border-left: 1px solid lightgreen;
+        }
+
+        /* Change color of the anchor links on hover/focus. */
+
+        #menu li a:hover,
+        #menu li a:focus {
+            background: #00640061;
+        }
+
+        /* This styles the selected menu item `<li>`. */
+
+        #menu li a.active {
+            background: #00640061;
+        }
+
+        /* This styles the menu heading. */
+
+        #menu li.heading {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: inherit;
+        }
+
+        #menu li.heading > * {
+            padding: 0.5em;
+            display: block;
+        }
+
+        #menu li.heading a {
+            color: #0c68af;
+        }
+
+        /* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+        /*
+        `.menu-link` represents the responsive menu toggle that shows/hides on
+        small screens.
+        */
+
+        .menu-link {
+            position: fixed;
+            display: block;
+            /* show this only on small screens */
+            top: 0;
+            left: 0;
+            /* "#menu width" */
+            font-size: 10px;
+            /* change this value to increase/decrease button size */
+            z-index: 10;
+            width: 2em;
+            height: auto;
+            padding: 1.6em 1.2em;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .menu-link:hover {
+            background: #f4f4f4;
+        }
+
+        .menu-link span {
+            position: relative;
+            display: block;
+        }
+
+        .menu-link span,
+        .menu-link span:before,
+        .menu-link span:after {
+            background-color: #555;
+            width: 100%;
+            height: 0.2em;
+            border-radius: 1em;
+        }
+
+        .menu-link span:before,
+        .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+
+        /* Hides the menu at `48em`, but modify this based on your app's needs. */
+
+        @media (min-width: 48em) {
+            .header,
+            .content {
+                padding-left: 2em;
+                padding-right: 2em;
+            }
+
+            #layout {
+                padding-left: 250px;
+                /* left col width "#menu" */
+                left: 0;
+            }
+            #menu {
+                left: 250px;
+            }
+
+            .menu-link {
+                position: fixed;
+                left: 250px;
+                display: none;
+            }
+
+            #layout.active .menu-link {
+                left: 250px;
+            }
+        }
+
+        @media (max-width: 48em) {
+            #layout.active {
+                position: relative;
+            }
+            .content ul {
+                padding-inline-start: 10px;
+            }
+        }
+
+        /* Heading anchors and permalinks */
+        h1[id],
+        h2[id],
+        h3[id],
+        h4[id],
+        h5[id],
+        h6[id] {
+            position: relative;
+        }
+        .heading-anchor-permalink {
+            /* Position the permalink to the left of the title */
+            position: absolute;
+            right: 100%;
+            /* Add some spacing as padding to not lose the hover */
+            padding-right: 0.6rem;
+            /* Make it only visible on heading hover, see below */
+            opacity: 0;
+        }
+        h1[id]:hover .heading-anchor-permalink,
+        h2[id]:hover .heading-anchor-permalink,
+        h3[id]:hover .heading-anchor-permalink,
+        h4[id]:hover .heading-anchor-permalink,
+        h5[id]:hover .heading-anchor-permalink,
+        h6[id]:hover .heading-anchor-permalink {
+            opacity: 0.5;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+</head>
+
+<body>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <nav id="menu">
+        <ul>
+<li><a class="" href="../index.html">index</a></li>
+<li class="heading"><span>Machine Learning</span></li>
+<ul>
+<li><a class="" href="../1-Machine Learning/1-Convolution.html">Convolution</a></li>
+<li><a class="" href="../1-Machine Learning/2-Embedding.html">Embedding</a></li>
+<li><a class="" href="../1-Machine Learning/3-Preprocessing.html">Preprocessing</a></li>
+<li><a class="" href="../1-Machine Learning/4-Categorizer.html">Categorizer</a></li>
+<li><a class="" href="../1-Machine Learning/5-LSTM RNN CNN.html">LSTM RNN CNN</a></li>
+<li><a class="" href="../1-Machine Learning/6-Sentiment Modeling.html">Sentiment Modeling</a></li>
+<li><a class="" href="../1-Machine Learning/7-Bagging and Boosting.html">Bagging and Boosting</a></li>
+<li><a class="" href="../1-Machine Learning/8-Chatbot.html">Chatbot</a></li>
+<li><a class="" href="../1-Machine Learning/Transformer.html">Transformer</a></li>
+</ul>
+<li class="heading"><span>WebRTC</span></li>
+<ul>
+<li><a class="" href="../2-WebRTC/APIs.html">APIs</a></li>
+<li><a class="" href="../2-WebRTC/Mechanism.html">Mechanism</a></li>
+<li><a class="" href="../2-WebRTC/Signaling.html">Signaling</a></li>
+<li><a class="" href="../2-WebRTC/Zoom API.html">Zoom API</a></li>
+</ul>
+<li class="heading"><span>Azure</span></li>
+<ul>
+<li><a class="" href="../3-Azure/App Service Warmer.html">App Service Warmer</a></li>
+<li><a class="" href="../3-Azure/Deployment.html">Deployment</a></li>
+</ul>
+<li class="heading"><span>Flutter</span></li>
+<ul>
+<li><a class="" href="1-Setup.html">Setup</a></li>
+<li><a class="" href="2-Widget.html">Widget</a></li>
+<li><a class="" href="3-Assets.html">Assets</a></li>
+<li><a class="" href="4-Http Request.html">Http Request</a></li>
+<li><a class="" href="5-FCM 연동.html">FCM 연동</a></li>
+<li><a class="" href="6-Rich Text Editor.html">Rich Text Editor</a></li>
+<li><a class="" href="7-Build Context.html">Build Context</a></li>
+<li><a class="active" href="8-Native Code 연동.html">Native Code 연동</a></li>
+</ul>
+<li class="heading"><span>NestJS</span></li>
+<ul>
+<li><a class="" href="../60-NestJS/Firebase Cloud Messaging.html">Firebase Cloud Messaging</a></li>
+<li><a class="" href="../60-NestJS/MySQL and Typeorm.html">MySQL and Typeorm</a></li>
+<li><a class="" href="../60-NestJS/NestJS and Keycloak.html">NestJS and Keycloak</a></li>
+</ul>
+<li class="heading"><span>ETC</span></li>
+<ul>
+<li><a class="" href="../99-ETC/CloudStorage.html">CloudStorage</a></li>
+<li><a class="" href="../99-ETC/Deploy iOS Application.html">Deploy iOS Application</a></li>
+<li><a class="" href="../99-ETC/FCM.html">FCM</a></li>
+<li><a class="" href="../99-ETC/GithubPage.html">GithubPage</a></li>
+<li><a class="" href="../99-ETC/MQvsKafka.html">MQvsKafka</a></li>
+</ul>
+</ul>
+    </nav>
+    <article id="main" class="content">
+        <h1 id="platform-specific-code">Platform Specific Code <a class="heading-anchor-permalink" href="#platform-specific-code">#</a></h1>
+<h6 id="tags%3A-flutter">tags: <code>Flutter</code> <a class="heading-anchor-permalink" href="#tags%3A-flutter">#</a></h6>
+<img src="https://i.imgur.com/sfvIQbN.png" width="500px"/>
+<ul>
+<li>
+<p>Flutter 개발을 하다보면 iOS나 Android native 코드를 작성해야 하는 경우가 발생한다.
+이러한 경우 문제를 해결하는 방법은 찾아보았고 3가지 방법을 확인할 수 있었다.</p>
+<ol>
+<li>Android는 AAR을 ios는 Library을 각각 만들어 flutter project에 plugin형식으로 import 한다.</li>
+<li>Method Channel(not typesafe)를 이용하여 각 native 코드와 integrate한다.</li>
+<li>Pigeon(typesafe)을 이용하여 navtive 코드와 integrate한다.</li>
+</ol>
+</li>
+<li>
+<p>AAR과 Library 각각 생성해서 flutter에 plugin으로 붙이는 과정은 복잡하고 stackoverflow에서 여러 시행착오와 어려움을 호소하는 사람들이 많이 보였다. 그래서 flutter에서 제공하는 MethodChannel을 이용했는데 이 방식은 flutter에서 변수를 넘겨줄때 native코드에서 해당 변수를 다른 타입으로 받거나 이상하게 사용하면 runtime시 오류가 발생하는 문제가 있었다.</p>
+</li>
+<li>
+<p>Runtime이 아닌 Compile 과정에서 type check를 통해 불안정한 서비스 제공을 막아주는 typesafe한 코드를 작성하고 싶었기에 Method Channel말고 <a href="https://pub.dev/packages/pigeon">Pigeon</a>을 사용해 보기로 했다.</p>
+</li>
+<li>
+<p>현재 pigeon은 iOS는 Objective C로만 제공이 되고 Android는 Java로만 제공이 되는 제약사항이 있었지만 추후에 Swift나 Kotlin 코드 작성이 불가피해지면 bridge로 해결하고자 한다.</p>
+</li>
+<li>
+<p>먼저 pigeon을 설치하는데 필자는 ^0.2.1버전을 설치하였으니 참고바란다.</p>
+<pre><code class="language-yml=">dev_dependencies:
+    pigeon: ^0.2.1
+</code></pre>
+</li>
+<li>
+<p>간단한 pigeon 템플릿 코드를 작성한다</p>
+<pre><code class="language-java=">import 'package:pigeon/pigeon.dart';
+
+class SearchRequest {
+  String query; // native에 넘겨줄 리퀘스트 파라미터
+}
+
+class SearchReply {
+  String result; // native에서 받을 결과 파라미터
+}
+
+@HostApi()
+abstract class Api {
+  SearchReply search(SearchRequest request);
+}
+</code></pre>
+</li>
+<li>
+<p>Pigeon command를 통해 iOS와 Android를 위한 pigeon 클래스틑 생성해 준다.</p>
+<pre><code class="language-shell=">flutter pub run --no-sound-null-safety pigeon \
+  --input pigeons/message.dart \
+  --dart_out lib/pigeon.dart \
+  --objc_header_out ios/Runner/pigeon.h \
+  --objc_source_out ios/Runner/pigeon.m \
+  --java_out ./android/app/src/main/java/com/conanshin/test_project/Pigeon.java \
+  --java_package &quot;com.conanshin.test_project&quot;
+</code></pre>
+<p>위 명령을 통해 Android와 iOS폴더 하위에 각각 pigeon 클래스가 생성된것을 확인할 수 있는데 간혹 iOS workspace에서는 Android Studio의 Flutter 프로젝트에서 추가된 파일들을 인식하지 못하는 경우가 발생한다.
+이를 확인하기 위해서는 iOS workspace를 xcode에서 열람하여 pigeon.m과 pigeon.h 파일이 각각 위치하고 있는지를 확인해주면 되고 없을시에는 메뉴얼로 추가해주도록 한다.</p>
+</li>
+<li>
+<p>Android (MainActivity.java)</p>
+<pre><code class="language-java=">public class MainActivity extends FlutterActivity {
+    private static class MyApi implements Pigeon.Api {
+        @Override
+        public Pigeon.SearchReply search(Pigeon.SearchRequest request) {
+            Pigeon.SearchReply reply = new Pigeon.SearchReply();
+            reply.setResult(String.format(&quot;Hi %s!&quot;, request.getQuery()));
+            return reply;
+        }
+    }
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Pigeon.Api.setup(Objects.requireNonNull(getFlutterEngine()).getDartExecutor().getBinaryMessenger(), new MyApi());
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>iOS (AppDelegate.m)</p>
+<pre><code class="language-objective-c=">@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [GeneratedPluginRegistrant registerWithRegistry:self];
+  // Override point for customization after application launch.
+  FlutterViewController* controller =
+      (FlutterViewController*)self.window.rootViewController;
+  ApiSetup(controller.binaryMessenger, self);
+  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+-(SearchReply *)search:(SearchRequest*)input error:(FlutterError **)error {
+    SearchReply* result = [[SearchReply alloc] init];
+    result.result  = [NSString stringWithFormat:@&quot;%s%@&quot;,&quot;Hi &quot;,input.query];
+    return result;
+}
+
+@end
+</code></pre>
+</li>
+<li>
+<p>Dart</p>
+<pre><code class="language-dart=">SearchRequest()..query = &quot;Conan&quot;;
+Api api = Api();
+SearchReply reply = await api.search(request);
+print(&quot;###### ${reply.result}&quot;);
+// flutter: ###### Hi Conan
+</code></pre>
+</li>
+</ul>
+
+    </article>
+</div>
+<script>
+    // Load contents.json if you need it
+</script>
+<script>
+    // FROM http://purecss.io/js/ui.js
+    (function(window, document) {
+        var layout = document.getElementById("layout"),
+            menu = document.getElementById("menu"),
+            menuLink = document.getElementById("menuLink");
+
+        function toggleClass(element, className) {
+            var classes = element.className.split(/\s+/),
+                length = classes.length,
+                i = 0;
+
+            for (; i < length; i++) {
+                if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                }
+            }
+            // The className is not found
+            if (length === classes.length) {
+                classes.push(className);
+            }
+
+            element.className = classes.join(" ");
+        }
+
+        menuLink.onclick = function(e) {
+            var active = "active";
+
+            e.preventDefault();
+            toggleClass(layout, active);
+            toggleClass(menu, active);
+            toggleClass(menuLink, active);
+        };
+    })(this, this.document);
+</script>
+</body>
+</html>
